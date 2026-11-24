@@ -25,6 +25,7 @@ Kênh cá nhân của anh Bình. Không ghi tên anh trong video. Mỗi tập ch
 - Khung giấy kem 1080 px giữ nguyên kích thước. Hình vẽ và chữ nằm trong vùng an toàn, cách mép trái và mép phải tối thiểu 100 px.
 - Chỉ có cây bút vẽ, không có tay. Hình minh họa nét đen, màu phẳng, to.
 - Phụ đề: chữ trắng đậm viền đen, ngắt theo cụm nghĩa, từ khóa có màu.
+- Chuẩn chi tiết (bút không đè chữ, chữ ≥ 40 px, hình to lấp khung, phụ đề ≥ 4 từ/cụm, khung pre): xem mục "Chuẩn hình bắt buộc" trong `tools/README.md`. Tập mẫu: `tools/tap08`.
 
 ## 6. Nhạc
 - "Wholesome" – Kevin MacLeod, CC BY 4.0. Ghi nguồn khi đăng.
@@ -32,8 +33,7 @@ Kênh cá nhân của anh Bình. Không ghi tên anh trong video. Mỗi tập ch
 - Không tiếng bút, không tiếng chuyển cảnh, không dùng nhạc tự soạn.
 
 ## 7. Bàn giao mỗi tập
-1. Video dọc: `Tap<n>_<ten>_TikTok-YouTube-Facebook.mp4`, có ảnh bìa gắn vào giây cuối.
-2. Ảnh bìa 1080×1920, chữ nằm trong vùng giữa y 240–1680.
+1. Video dọc: `video/Tap<n>.mp4` (không làm ảnh bìa từ 24/11/2026).
 3. Không làm file Word hướng dẫn đăng (anh Bình bỏ 24/11/2026). Khi lên lịch Metricool, Claude điền thẳng mô tả, tiêu đề Shorts tối đa 100 ký tự, tối đa 6 hashtag, dòng ghi nguồn nhạc, nhãn "Nội dung do AI tạo" trên TikTok.
 4. Kiểm tra trước khi giao: khung hình rải đều, loudness khoảng -14 LUFS, tốc độ đọc đúng, không chữ sát mép.
 

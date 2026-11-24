@@ -18,6 +18,7 @@ studio/            bộ máy dùng chung cho mọi tập
 tap01/  Doanh thu tăng mà không có tiền?  (script2.json, scenes.py, scenes.json, dur.json, words.json)
 tap02/  Thu hồi công nợ mà không mất khách
 tap03/  Hàng tồn kho đang giam vốn (đăng 26/11/2026)
+tap08/  Đọc dòng tiền để khỏi thiếu tiền – TẬP MẪU CHUẨN từ 24/11/2026 (copy scenes.py, page.html từ đây)
 ```
 Video thành phẩm KHÔNG lưu ở đây – nằm ở kho công khai `goc-nhin-kinh-doanh-media` (link cho Metricool).
 
@@ -33,9 +34,20 @@ Video thành phẩm KHÔNG lưu ở đây – nằm ở kho công khai `goc-nhin
 ## Chuẩn bắt buộc (anh Bình chốt 23/11/2026)
 - Video dọc 9:16 dùng chung 3 nền tảng; hết chuỗi 5–6 tập gộp 1 video ngang 16:9 8–10 phút.
 - Nhãn "GÓC NHÌN KINH DOANH" in hoa nền vàng cam; chỉ cây bút vẽ (không tay); không tiếng bút, không tiếng chuyển cảnh; chữ chạy nhiều màu.
-- VÙNG AN TOÀN: giữ khung giấy rộng 1080 như cũ, nhóm hình vẽ + bút trong `translate(97,50) scale(0.82)`; tiêu đề 62px, phụ đề 54px rộng 860px – hình và chữ không sát hai mép. Không co cả khung hình.
+- VÙNG AN TOÀN: giữ khung giấy rộng 1080 như cũ, nhóm hình vẽ + bút trong `translate(40,30) scale(0.92)` (cập nhật 24/11/2026); tiêu đề 62px, phụ đề 54px rộng 860px. Không co cả khung hình.
 - Lời đọc đủ chủ ngữ – vị ngữ, văn phong học thức, lịch sự; kết "Phần sau sẽ là…", ngắt nghỉ, "Hẹn gặp lại các bạn." (không cảm ơn).
 - Dài 50–65 giây; giọng ~4 tiếng/giây; loudness −14 LUFS.
+
+## Chuẩn hình bắt buộc (anh Bình duyệt tập 08, 24/11/2026)
+Bộ máy `studio/page.html` đã cài sẵn 1–3; các tập mới copy `tap08/scenes.py` làm mẫu.
+1. Bút chỉ hiện khi vẽ nét; ẩn khi chữ hiện, không bao giờ đè lên chữ. Bút cỡ `scale(0.4)`.
+2. Chữ trong hình hiện nguyên chữ (mờ dần + trượt nhẹ), không quét từng phần – không còn mảnh chữ cụt kiểu "ch".
+3. Phụ đề: `text-wrap: balance`, mỗi cụm tối thiểu 4 từ (không dòng 1 từ); cụm cuối "Hẹn gặp lại các bạn" giữ đến hết video.
+4. Chữ trong hình tối thiểu 40 px (nhãn chính 46–56 px, tiêu đề cảnh 58–66 px). Chữ phải nằm gọn trong ô – ô rộng theo chữ.
+5. Hình to, lấp khung: nhân vật `person(...,1.4)`, ví `wallet2(x,y,1.4–1.5)`, xu r 70–85, lịch `cal2(x,y,'5')`. Không để nửa khung trống; cảnh chỉ có chữ thì thêm hình minh họa bên cạnh.
+6. Khung/ô nền của cảnh so sánh (Kế hoạch | Thực tế) và khung cảnh "Phần sau" dùng `pre(...)` – hiện ngay đầu cảnh, chỉ vẽ nội dung bên trong.
+7. Số liệu trên hình phải có nghĩa (vd Ngày 5 → Ngày 30 = 25 ngày), không lặp số vô nghĩa.
+8. Kiểm tra trước khi giao: trích 20 khung (mỗi 3 giây) xem đủ 1–7; kiểm danh sách cụm phụ đề < 4 từ phải rỗng; đo loudness −14 LUFS.
 
 ## Cài đặt khi mở phiên mới (không mất thời gian chờ)
 - Việc ĐẦU TIÊN: `nohup bash tools/setup.sh > /tmp/setup.log 2>&1 &` (chạy ngầm 2–5 phút: thư viện, model VieNeu, whisper, sửa symlink, nạp thử giọng).

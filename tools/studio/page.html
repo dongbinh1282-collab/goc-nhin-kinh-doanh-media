@@ -9,18 +9,18 @@ html,body{margin:0;width:1080px;height:1920px;background:#000;overflow:hidden;fo
 svg{position:absolute;left:0;top:10px}
 #title{position:absolute;top:1255px;width:100%;text-align:center;font-weight:900;font-size:62px;line-height:1.15;color:#ffcf3f;
  text-shadow:0 0 18px rgba(255,140,0,0.75),0 0 4px rgba(255,120,0,0.9),3px 3px 0 #7a3b00}
-#sub{position:absolute;top:1470px;left:50%;transform:translateX(-50%);width:860px;color:#fff;font-weight:900;font-size:54px;line-height:1.3;text-align:center;text-shadow:-3px -3px 0 #000,3px -3px 0 #000,-3px 3px 0 #000,3px 3px 0 #000,0 3px 0 #000,0 -3px 0 #000,3px 0 0 #000,-3px 0 0 #000,0 7px 6px rgba(0,0,0,0.7)}
+#sub{text-wrap:balance;position:absolute;top:1470px;left:50%;transform:translateX(-50%);width:860px;color:#fff;font-weight:900;font-size:54px;line-height:1.3;text-align:center;text-shadow:-3px -3px 0 #000,3px -3px 0 #000,-3px 3px 0 #000,3px 3px 0 #000,0 3px 0 #000,0 -3px 0 #000,3px 0 0 #000,-3px 0 0 #000,0 7px 6px rgba(0,0,0,0.7)}
 #sub span{display:inline-block;margin:0 9px}
 </style></head><body>
 <div id="tag">GÓC NHÌN KINH DOANH</div>
-<div id="panel"><svg id="sv" width="1080" height="620" viewBox="0 0 1080 620"><defs><filter id="rough" filterUnits="userSpaceOnUse" x="-20" y="-20" width="1120" height="680"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="1.6"/></filter></defs><g transform="translate(97,50) scale(0.82)"><g id="art"></g><g id="hand"></g></g></svg></div>
+<div id="panel"><svg id="sv" width="1080" height="620" viewBox="0 0 1080 620"><defs><filter id="rough" filterUnits="userSpaceOnUse" x="-20" y="-20" width="1120" height="680"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="1.6"/></filter></defs><g transform="translate(40,30) scale(0.92)"><g id="art"></g><g id="hand"></g></g></svg></div>
 <div id="title">THU HỒI CÔNG NỢ<br>MÀ KHÔNG MẤT KHÁCH</div>
 <div id="sub"></div>
 <script>
 let S=null,D=null,W=null,cur=-1,items=[],starts=[];
 const HAND=`<defs><filter id="hs" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="8" dy="10" stdDeviation="4" flood-color="#5a3a20" flood-opacity="0.22"/></filter>
 <linearGradient id="pb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a3f4a"/><stop offset="0.45" stop-color="#22262e"/><stop offset="1" stop-color="#111"/></linearGradient></defs>
-<g transform="rotate(-50) scale(0.55)" filter="url(#hs)" stroke-linejoin="round">
+<g transform="rotate(-50) scale(0.4)" filter="url(#hs)" stroke-linejoin="round">
 <path d="M0,0 L26,-8 L26,8 Z" fill="#111"/>
 <path d="M26,-11 L56,-15 L56,15 L26,11 Z" fill="#c9ced6" stroke="#2a2d33" stroke-width="2"/>
 <path d="M56,-17 L300,-17 Q318,0 300,17 L56,17 Z" fill="url(#pb)"/>
@@ -59,15 +59,16 @@ function setT(T){
       const sc=(v<90&&q>=1)?1+0.06*Math.sin(lt*10):1; it.el.setAttribute('transform',`translate(${it.e.x},${it.e.y}) scale(${sc}) translate(${-it.e.x},${-it.e.y})`);}
     else if(it.k==='p'){it.el.style.strokeDashoffset=it.L*(1-p); it.el.setAttribute('fill-opacity',Math.max(0,Math.min(1,(lt-e)/0.3)));
       if(p>0&&p<1){const pt=it.el.getPointAtLength(it.L*p); hx=pt.x; hy=pt.y;}}
-    else{const bb=it.bb; it.cr.setAttribute('x',bb.x-5); it.cr.setAttribute('width',(bb.width+10)*p);
-      if(p>0&&p<1){hx=bb.x+bb.width*p; hy=bb.y+bb.height*0.7;}}
+    else{const bb=it.bb; it.cr.setAttribute('x',bb.x-5); it.cr.setAttribute('width',bb.width+10); it.el.setAttribute('opacity',p); it.el.setAttribute('transform',`translate(0,${(1-p)*14})`);}
   });
   const hand=document.getElementById('hand');
   window.DRAW=(hx===null)?null:[hx,hy];
+  const hideHand = hx===null && lt>=0.15 && lt<lastEnd;
   if(hx===null){ // rest / exit
     const q=Math.max(0,Math.min(1,(lt-lastEnd)/0.5)); const q0=Math.max(0,Math.min(1,lt/0.15));
     if(lt<0.15){hx=1150-200*q0; hy=760-200*q0;} else {hx=900+300*q; hy=520+300*q;}
   }
+  document.getElementById('hand').style.opacity = hideHand ? 0 : 1;
   hand.setAttribute('transform',`translate(${hx+Math.sin(T*9)*1.5},${hy+Math.cos(T*7)*1.5})`);
   // scene-end erase
   const fade=Math.max(0,Math.min(1,(D[i]-lt)/0.25)); document.getElementById('art').setAttribute('opacity', i<D.length-1?fade:1);
@@ -91,11 +92,12 @@ function init(s,d,w){S=s;D=d;W=w; let b=0;
   w.forEach((ws,i)=>{let ph=[],cur=[];ws.forEach((x,k)=>{cur.push(x); if(k==ws.length-1||ws[k+1][3]!==x[3]){ph.push(cur);cur=[];}});
     ph.forEach((p,pi)=>{
       // split at commas, then balance pieces longer than 9 words
-      let segs=[],cur2=[];p.forEach((x,q)=>{cur2.push(x);if(x[4]===1&&q<p.length-1&&cur2.length>=3){segs.push(cur2);cur2=[];}});if(cur2.length){if(cur2.length<3&&segs.length){segs[segs.length-1]=segs[segs.length-1].concat(cur2);}else segs.push(cur2);}
+      let segs=[],cur2=[];p.forEach((x,q)=>{cur2.push(x);if(x[4]===1&&q<p.length-1&&cur2.length>=4){segs.push(cur2);cur2=[];}});if(cur2.length){if(cur2.length<4&&segs.length){segs[segs.length-1]=segs[segs.length-1].concat(cur2);}else segs.push(cur2);}
       let out=[];segs.forEach(sg=>{if(sg.length<=9){out.push(sg);}else{const n=Math.ceil(sg.length/8),sz=Math.ceil(sg.length/n);for(let j=0;j<sg.length;j+=sz)out.push(sg.slice(j,j+sz));}});
       out.forEach((part,oi)=>{const nxt=(oi+1<out.length)?out[oi+1][0][0]:(pi+1<ph.length?ph[pi+1][0][0]:D[i]);
         CH.push({ci:CH.length,st:b+part[0][0],en:b+Math.min(nxt,part[part.length-1][1]+0.6),w:part.map(z=>({t:z[2],s:b+z[0]}))});});
     });
     b+=D[i];});
+CH[CH.length-1].en=b+1;
 }
 </script></body></html>

@@ -1,0 +1,9 @@
+__pycache__/
+tools/tap*/fr*/
+tools/tap*/all/
+tools/tap*/tts_cache/
+tools/tap*/*.wav
+tools/tap*/*.raw
+tools/tap*/*.m4a
+tools/tap*/*.mp4
+tools/tap*/pv_*.jpg

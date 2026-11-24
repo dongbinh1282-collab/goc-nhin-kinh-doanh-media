@@ -29,5 +29,8 @@ find /root/.cache/huggingface/hub -type l | while read l; do t=$(readlink -f "$l
 [ -f "/usr/share/fonts/truetype/google-fonts/ofl/montserrat/Montserrat[wght].ttf" ] || echo "THIẾU FONT Montserrat – tải từ google/fonts"
 
 # 5) Nạp thử giọng Đức Trí
-cd "$(dirname "$(readlink -f "$0")")/studio" && python3 -c "from vn import load; t=load(); t.get_preset_voice('Đức Trí'); print('giọng OK')"
+# Model codec MOSS chỉ tải khi nạp giọng lần đầu → nếu lỗi symlink thì sửa lại rồi nạp lần 2
+cd "$(dirname "$(readlink -f "$0")")/studio"
+TRY='from vn import load; t=load(); t.get_preset_voice("Đức Trí"); print("giọng OK")'
+python3 -c "$TRY" || { find /root/.cache/huggingface/hub -type l | while read l; do t=$(readlink -f "$l"); rm "$l"; cp "$t" "$l"; done; python3 -c "$TRY"; }
 touch /tmp/setup.done && echo "SETUP XONG"
