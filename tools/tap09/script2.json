@@ -1,0 +1,34 @@
+[
+ [
+  ["Ba tháng tới có Tết.", "n"],
+  ["Doanh nghiệp đã biết tuần nào sẽ thiếu tiền nhất chưa?", "q"]
+ ],
+ [
+  ["Chi tiêu tăng mạnh, trong khi tiền thu chậm nhất năm.", "n"],
+  ["Vì vậy, không thể dự báo mùa Tết bằng số liệu của tháng bình thường.", "n"]
+ ],
+ [
+  ["Điều thứ nhất là dồn đúng các khoản chi vào những tuần trước Tết.", "f"],
+  ["Lương tháng mười ba, thưởng Tết, tiền hàng chốt cuối năm và thuế thường dồn vào cùng vài tuần.", "n"],
+  ["Ví dụ, quỹ lương hai trăm triệu mỗi tháng có thể thành bốn trăm triệu trong tháng trước Tết.", "n"]
+ ],
+ [
+  ["Điều thứ hai là dời tiền thu sang sau Tết.", "f"],
+  ["Khoản hẹn thu sát Tết nên dời hai đến ba tuần, và những ngày nghỉ Tết tính tiền thu bằng không.", "n"]
+ ],
+ [
+  ["Điều thứ ba là tìm tuần có quỹ thấp nhất.", "f"],
+  ["Tuần này thường nằm ngay sau Tết, khi tiền đã chi hết mà khách chưa thanh toán.", "n"]
+ ],
+ [
+  ["Điều thứ tư là chuẩn bị nguồn tiền từ sớm.", "f"],
+  ["Doanh nghiệp nên làm việc với ngân hàng và nhà cung cấp ngay từ bây giờ.", "n"]
+ ],
+ [
+  ["Doanh nghiệp thiếu tiền mùa Tết không phải vì Tết, mà vì không thấy trước tuần khó nhất.", "k"]
+ ],
+ [
+  ["Phần sau sẽ là cách làm việc với ngân hàng để có sẵn hạn mức vay trước khi cần.", "p"],
+  ["Hẹn gặp lại các bạn.", "p"]
+ ]
+]
