@@ -12,7 +12,7 @@ studio/            bộ máy dùng chung cho mọi tập
   vn.py            vá tải model VieNeu (biến môi trường VIENEU_DIR = thư mục model v3 Turbo)
   mkscore.py       dựng nhạc theo đoạn từ 3 bản Wholesome (lowpass 650 / 2600 / đầy đủ) → score.wav
   cover.html       mẫu ảnh bìa 1080x1920 (chữ trong vùng 3:4 giữa)
-  build_guide.js   tạo file Word hướng dẫn đăng (docx) – có biểu tượng nền tảng trong icons/
+  build_guide.js   (KHÔNG DÙNG NỮA từ 24/11/2026 – bỏ file Word hướng dẫn đăng)
   make.sh          các lệnh ffmpeg ráp video
   music/Wholesome.mp3  Kevin MacLeod, CC BY 4.0 (bắt buộc ghi nguồn khi đăng)
 tap01/  Doanh thu tăng mà không có tiền?  (script2.json, scenes.py, scenes.json, dur.json, words.json)
@@ -27,7 +27,7 @@ Video thành phẩm KHÔNG lưu ở đây – nằm ở kho công khai `goc-nhin
 3. Xem thử: `python3 ../studio/cap.py pv 3 20 40` → pv_*.jpg.
 4. Chụp đủ khung (N = tổng dur × 30): `cap.py 0 a 0 & cap.py a b 1 & ...` → fr0..fr3.
 5. Nhạc + ráp: xem `studio/make.sh`.
-6. Ảnh bìa (cover.html) gắn 1 giây cuối; Word hướng dẫn (`node build_guide.js`).
+6. Ảnh bìa (cover.html) gắn 1 giây cuối. Không làm file Word hướng dẫn đăng.
 7. Đẩy mp4 lên kho media → lên lịch Metricool (blogId 8047642) TikTok + YouTube short + Facebook REEL, 20:00.
 
 ## Chuẩn bắt buộc (anh Bình chốt 23/11/2026)

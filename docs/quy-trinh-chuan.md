@@ -34,7 +34,7 @@ Kênh cá nhân của anh Bình. Không ghi tên anh trong video. Mỗi tập ch
 ## 7. Bàn giao mỗi tập
 1. Video dọc: `Tap<n>_<ten>_TikTok-YouTube-Facebook.mp4`, có ảnh bìa gắn vào giây cuối.
 2. Ảnh bìa 1080×1920, chữ nằm trong vùng giữa y 240–1680.
-3. File Word hướng dẫn đăng: mô tả, tiêu đề Shorts tối đa 100 ký tự, tối đa 6 hashtag, dòng ghi nguồn nhạc, bình luận ghim, bật nhãn "Nội dung do AI tạo" trên TikTok, giờ đăng 6:30–7:30 hoặc 20:00–21:00.
+3. Không làm file Word hướng dẫn đăng (anh Bình bỏ 24/11/2026). Khi lên lịch Metricool, Claude điền thẳng mô tả, tiêu đề Shorts tối đa 100 ký tự, tối đa 6 hashtag, dòng ghi nguồn nhạc, nhãn "Nội dung do AI tạo" trên TikTok.
 4. Kiểm tra trước khi giao: khung hình rải đều, loudness khoảng -14 LUFS, tốc độ đọc đúng, không chữ sát mép.
 
 ## 8. Đăng
