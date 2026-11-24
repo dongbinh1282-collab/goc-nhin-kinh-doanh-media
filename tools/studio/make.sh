@@ -22,8 +22,6 @@ ffmpeg -y -loglevel error -i voice_dry.wav -i score.wav -filter_complex \
  "[0:a]aresample=44100,pan=stereo|c0=c0|c1=c0,highpass=f=70,acompressor=threshold=0.1:ratio=2.5:attack=8:release=120,asplit=2[v][sc];[1:a]volume=0.21[m];[m][sc]sidechaincompress=threshold=0.02:ratio=5:attack=25:release=400[d];[v][d]amix=inputs=2:normalize=0,loudnorm=I=-14:TP=-1.5:LRA=11" \
  -ar 48000 -c:a aac -b:a 192k mix.m4a
 
-# 4) Ảnh bìa 1 giây cuối (cover.jpg 1080x1920) rồi ráp thành phẩm
-ffmpeg -y -loglevel error -loop 1 -framerate 30 -i cover.jpg -t 1 -vf format=yuv420p -c:v libx264 -crf 18 tail.mp4
-ffmpeg -y -loglevel error -i vid.mp4 -i tail.mp4 -i mix.m4a -filter_complex "[0:v][1:v]concat=n=2:v=1:a=0[v];[2:a]apad[a]" \
- -map "[v]" -map "[a]" -t $(python3 -c "print($T+1.05)") -c:v libx264 -crf 18 -pix_fmt yuv420p -c:a aac -b:a 192k -movflags +faststart final.mp4
+# 4) Ráp thành phẩm (không còn ảnh bìa từ 24/11/2026 – anh Bình bỏ)
+ffmpeg -y -loglevel error -i vid.mp4 -i mix.m4a -map 0:v -map 1:a -t $T -c:v libx264 -crf 18 -pix_fmt yuv420p -c:a aac -b:a 192k -movflags +faststart final.mp4
 echo "Xong: final.mp4"

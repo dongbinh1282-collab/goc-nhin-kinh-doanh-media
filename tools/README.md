@@ -27,7 +27,7 @@ Video thành phẩm KHÔNG lưu ở đây – nằm ở kho công khai `goc-nhin
 3. Xem thử: `python3 ../studio/cap.py pv 3 20 40` → pv_*.jpg.
 4. Chụp đủ khung (N = tổng dur × 30): `cap.py 0 a 0 & cap.py a b 1 & ...` → fr0..fr3.
 5. Nhạc + ráp: xem `studio/make.sh`.
-6. Ảnh bìa (cover.html) gắn 1 giây cuối. Không làm file Word hướng dẫn đăng.
+6. Không làm ảnh bìa và file Word hướng dẫn đăng (anh Bình bỏ từ 24/11/2026).
 7. Đẩy mp4 lên kho media → lên lịch Metricool (blogId 8047642) TikTok + YouTube short + Facebook REEL, 20:00.
 
 ## Chuẩn bắt buộc (anh Bình chốt 23/11/2026)
