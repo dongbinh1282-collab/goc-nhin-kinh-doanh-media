@@ -1,0 +1,76 @@
+[
+[
+[
+"Doanh nghiệp đã có lợi nhuận trên giấy,",
+"n"
+],
+[
+"nhưng cuối tháng vẫn không đủ tiền chi trả?",
+"q"
+],
+[
+"Nguyên nhân là doanh nghiệp chưa biết mình cần bán bao nhiêu để không lỗ.",
+"n"
+]
+],
+[
+[
+"Doanh số cân bằng là mức doanh thu mà doanh nghiệp không lãi cũng không lỗ.",
+"n"
+],
+[
+"Dưới mức này doanh nghiệp đang lỗ, trên mức này doanh nghiệp mới có lợi nhuận.",
+"k"
+]
+],
+[
+[
+"Bước thứ nhất là tách chi phí cố định và chi phí biến đổi.",
+"f"
+],
+[
+"Tiền thuê và lương quản lý là chi phí cố định, không đổi theo số lượng bán.",
+"n"
+]
+],
+[
+[
+"Bước thứ hai là tính tỷ lệ lợi nhuận trên mỗi đồng doanh thu.",
+"f"
+],
+[
+"Tỷ lệ này bằng phần còn lại sau chi phí biến đổi, chia cho giá bán.",
+"n"
+]
+],
+[
+[
+"Bước thứ ba là chia chi phí cố định cho tỷ lệ lợi nhuận.",
+"f"
+],
+[
+"Kết quả là doanh số cần đạt để chi trả đủ các chi phí cố định.",
+"n"
+]
+],
+[
+[
+"Ví dụ, chi phí cố định là sáu mươi triệu đồng mỗi tháng và tỷ lệ lãi là bốn mươi phần trăm.",
+"n"
+],
+[
+"Doanh số cân bằng khi đó là một trăm năm mươi triệu đồng mỗi tháng.",
+"k"
+]
+],
+[
+[
+"Phần sau sẽ là cách đọc dòng tiền để biết khi nào doanh nghiệp có nguy cơ thiếu tiền.",
+"p"
+],
+[
+"Hẹn gặp lại các bạn.",
+"k"
+]
+]
+]
