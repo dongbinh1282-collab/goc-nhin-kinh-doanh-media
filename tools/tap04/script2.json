@@ -1,0 +1,10 @@
+[
+[["Doanh nghiệp chỉ phát hiện thiếu tiền,","n"],["khi đã đến ngày trả lương và thanh toán cho nhà cung cấp?","q"],["Nguyên nhân là doanh nghiệp chưa có kế hoạch dòng tiền.","n"]],
+[["Kế hoạch dòng tiền mười ba tuần dự báo tiền vào và tiền ra trong một quý.","n"],["Khoảng thời gian này đủ dài để chuẩn bị, và đủ ngắn để dự báo chính xác.","k"]],
+[["Bước thứ nhất là ghi số dư tiền đầu kỳ.","f"],["Doanh nghiệp chỉ tính tiền thực có trong tài khoản và quỹ, không tính công nợ chưa thu.","n"]],
+[["Bước thứ hai là dự báo tiền thu theo từng tuần.","f"],["Mỗi khoản thu cần ghi rõ khách hàng, số tiền, và tuần dự kiến nhận được.","n"]],
+[["Bước thứ ba là ghi lại toàn bộ khoản chi.","f"],["Lương, tiền thuê, nhà cung cấp, thuế và tiền trả ngân hàng đều phải được xếp vào đúng tuần.","n"]],
+[["Bước thứ tư là tính số dư cuối mỗi tuần.","f"],["Số dư cuối tuần bằng số dư đầu tuần, cộng tiền thu, trừ tiền chi.","n"]],
+[["Tuần nào có số dư thấp hơn mức an toàn, doanh nghiệp cần hành động ngay từ bây giờ.","k"],["Doanh nghiệp có thể đẩy nhanh thu nợ, giãn khoản chi, hoặc chuẩn bị trước nguồn vốn dự phòng.","n"]],
+[["Phần sau sẽ là cách định giá sản phẩm để doanh nghiệp có lợi nhuận thật.","p"],["Hẹn gặp lại các bạn.","k"]]
+]

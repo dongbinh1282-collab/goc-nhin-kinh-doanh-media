@@ -3,8 +3,15 @@ import os; sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
 from vn import load
 import soundfile as sf,numpy as np
 from faster_whisper import WhisperModel
-WM=WhisperModel('small',compute_type='int8')
-tts=load();voice=tts.get_preset_voice('Đức Trí')
+import hashlib
+os.makedirs('tts_cache',exist_ok=True)
+_M={}
+def WMget():
+    if 'w' not in _M: _M['w']=WhisperModel('small',compute_type='int8')
+    return _M['w']
+def TTSget():
+    if 't' not in _M: _M['t']=load(); _M['v']=_M['t'].get_preset_voice('Đức Trí')
+    return _M['t'],_M['v']
 GAP={'n':0.16,'q':0.3,'k':0.4,'l':0.1,'f':0.16,'p':0.9}
 S=json.load(open('script2.json'));W=[];D=[];parts=[];k=0
 def dur(fn): return float(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration','-of','csv=p=0',fn]))
@@ -13,6 +20,15 @@ for i,sc in enumerate(S):
     for j,(txt,st) in enumerate(sc):
         NUM={'hai','ba','bốn','năm','tám','chín','mươi','mười','một','phần','trăm','thứ'}
         exp=[w for w in re.findall(r'\w+',txt.lower()) if w not in NUM]
+        h=hashlib.md5(txt.encode()).hexdigest()[:12]; cw=f'tts_cache/{h}.wav'; cj=f'tts_cache/{h}.json'
+        if os.path.exists(cw) and os.path.exists(cj):
+            subprocess.run(['cp',cw,f'v{k}.wav']); d=dur(f'v{k}.wav'); words=txt.split(); tm=json.load(open(cj))
+            print('line',k,'cache')
+            ws+=[[t+tm[n][0],t+tm[n][1],re.sub(r'[,.?:!]','',words[n]),j] for n in range(len(words))]
+            parts.append((i,t,f'v{k}.wav'));k+=1
+            t+=d+(GAP[st] if j<len(sc)-1 else 0.25)
+            continue
+        tts,voice=TTSget(); WM=WMget()
         best=None
         for tr in range(6):
             a=tts.infer(text=txt,voice=voice);tts.save(a,f'r{k}.wav')
@@ -34,6 +50,7 @@ for i,sc in enumerate(S):
         ww=[w for sg in WM.transcribe(au,language='vi',word_timestamps=True,initial_prompt=txt)[0] for w in sg.words]
         if len(ww)==len(words): tm=[[w.start,w.end] for w in ww]; print('align ok',k)
         else: print('align fallback',k,len(ww),len(words))
+        subprocess.run(['cp',f'v{k}.wav',cw]); json.dump([[float(a),float(b)] for a,b in tm],open(cj,'w'))
         ws+=[[t+tm[n][0],t+tm[n][1],re.sub(r'[,.?:!]','',words[n]),j] for n in range(len(words))]
         parts.append((i,t,f'v{k}.wav'));k+=1
         t+=d+(GAP[st] if j<len(sc)-1 else 0.25)
