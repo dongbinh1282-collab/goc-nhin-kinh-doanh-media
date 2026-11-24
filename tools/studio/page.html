@@ -1,0 +1,101 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:M;src:url('file:///usr/share/fonts/truetype/google-fonts/ofl/montserrat/Montserrat[wght].ttf');font-weight:100 900}
+@font-face{font-family:MI;src:url('file:///usr/share/fonts/truetype/google-fonts/ofl/montserrat/Montserrat-Italic[wght].ttf');font-weight:100 900}
+html,body{margin:0;width:1080px;height:1920px;background:#000;overflow:hidden;font-family:M}
+#tag{position:absolute;top:388px;left:50%;transform:translateX(-50%);white-space:nowrap;font-family:M;font-weight:900;font-size:40px;letter-spacing:4px;color:#1b1206;padding:14px 38px 12px;border-radius:50px;background:linear-gradient(180deg,#ffe066 0%,#ffb627 55%,#ff8f1f 100%);box-shadow:0 0 22px rgba(255,170,40,0.55),0 4px 0 #b35c00}
+#panel{position:absolute;top:560px;left:0;width:1080px;height:640px;overflow:hidden;
+ background:radial-gradient(ellipse at 40% 40%,#f6efe3 0%,#efe4d2 60%,#e6d8c2 100%)}
+#panel:after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(0,0,0,0.012) 0 2px,transparent 2px 4px)}
+svg{position:absolute;left:0;top:10px}
+#title{position:absolute;top:1255px;width:100%;text-align:center;font-weight:900;font-size:62px;line-height:1.15;color:#ffcf3f;
+ text-shadow:0 0 18px rgba(255,140,0,0.75),0 0 4px rgba(255,120,0,0.9),3px 3px 0 #7a3b00}
+#sub{position:absolute;top:1470px;left:50%;transform:translateX(-50%);width:860px;color:#fff;font-weight:900;font-size:54px;line-height:1.3;text-align:center;text-shadow:-3px -3px 0 #000,3px -3px 0 #000,-3px 3px 0 #000,3px 3px 0 #000,0 3px 0 #000,0 -3px 0 #000,3px 0 0 #000,-3px 0 0 #000,0 7px 6px rgba(0,0,0,0.7)}
+#sub span{display:inline-block;margin:0 9px}
+</style></head><body>
+<div id="tag">GÓC NHÌN KINH DOANH</div>
+<div id="panel"><svg id="sv" width="1080" height="620" viewBox="0 0 1080 620"><defs><filter id="rough" filterUnits="userSpaceOnUse" x="-20" y="-20" width="1120" height="680"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="1.6"/></filter></defs><g transform="translate(97,50) scale(0.82)"><g id="art"></g><g id="hand"></g></g></svg></div>
+<div id="title">THU HỒI CÔNG NỢ<br>MÀ KHÔNG MẤT KHÁCH</div>
+<div id="sub"></div>
+<script>
+let S=null,D=null,W=null,cur=-1,items=[],starts=[];
+const HAND=`<defs><filter id="hs" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="8" dy="10" stdDeviation="4" flood-color="#5a3a20" flood-opacity="0.22"/></filter>
+<linearGradient id="pb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a3f4a"/><stop offset="0.45" stop-color="#22262e"/><stop offset="1" stop-color="#111"/></linearGradient></defs>
+<g transform="rotate(-50) scale(0.55)" filter="url(#hs)" stroke-linejoin="round">
+<path d="M0,0 L26,-8 L26,8 Z" fill="#111"/>
+<path d="M26,-11 L56,-15 L56,15 L26,11 Z" fill="#c9ced6" stroke="#2a2d33" stroke-width="2"/>
+<path d="M56,-17 L300,-17 Q318,0 300,17 L56,17 Z" fill="url(#pb)"/>
+<path d="M62,-10 L292,-10" stroke="#6d7480" stroke-width="3" stroke-linecap="round"/>
+<rect x="200" y="-19" width="22" height="38" rx="3" fill="#e8574a"/>
+<path d="M300,-17 Q318,0 300,17" fill="none" stroke="#000" stroke-width="2"/>
+</g>`;
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+function build(i){
+  const g=document.getElementById('art'); let h='';
+  S[i].forEach((e,j)=>{
+    if(e.k==='c'){h+=`<text id="e${j}" x="${e.x}" y="${e.y}" text-anchor="middle" font-family="M" font-weight="900" font-size="${e.size}" fill="#2f9e5a">${e.from} ngày</text>`;}
+    else if(e.k==='p'){h+=`<path filter="url(#rough)" id="e${j}" d="${e.d}" fill="${e.fill||'none'}" fill-opacity="0" stroke="${e.col}" stroke-width="${e.sw}" stroke-linecap="round" stroke-linejoin="round"/>`;}
+    else{h+=`<clipPath id="c${j}"><rect id="cr${j}" x="0" y="0" width="0" height="700"/></clipPath><text id="e${j}" x="${e.x}" y="${e.y}" text-anchor="${e.anchor}" clip-path="url(#c${j})" font-family="M" font-weight="800" font-size="${e.size}" fill="${e.col}">${esc(e.txt)}</text>`;}
+  });
+  g.innerHTML=h; items=[]; let tot=0;
+  S[i].forEach((e,j)=>{
+    const el=document.getElementById('e'+j);
+    if(e.k==='c'){items.push({el,k:'c',e,w:0});}
+    else if(e.k==='p'){const L=el.getTotalLength(); el.style.strokeDasharray=L; el.style.strokeDashoffset=L; items.push({el,L,k:'p',w:Math.max(L,40)}); tot+=Math.max(L,40);}
+    else{const bb=el.getBBox(); items.push({el,k:'t',bb,w:bb.width*1.2,cr:document.getElementById('cr'+j)}); tot+=bb.width*1.2;}
+  });
+  let tot2=0; items.forEach((it,j)=>{if(!S[i][j].pre) tot2+=it.w;});
+  const avail=Math.max(1.2,Math.min(D[i]*0.8, tot2/1500)); let acc=0.15; starts=[];
+  items.forEach((it,j)=>{ if(S[i][j].pre){starts.push([-0.02,-0.01]);return;} const d=avail*it.w/tot2; starts.push([acc,acc+d]); acc+=d;});
+  document.getElementById('hand').innerHTML=HAND;
+}
+let CH=[];
+function setT(T){
+  let i=0,b=0; while(i<D.length-1 && T>=b+D[i]){b+=D[i];i++;}
+  const lt=T-b; if(i!==cur){build(i);cur=i;}
+  let hx=null,hy=null,lastEnd=0;
+  items.forEach((it,j)=>{const [s,e]=starts[j]; const p=Math.max(0,Math.min(1,(lt-s)/(e-s))); lastEnd=Math.max(lastEnd,e);
+    if(it.k==='c'){const q=Math.max(0,Math.min(1,(lt-it.e.t0)/(it.e.t1-it.e.t0)));const ez=1-Math.pow(1-q,2);const v=Math.round(it.e.from+(it.e.to-it.e.from)*ez);
+      it.el.textContent=v+' ngày'; it.el.setAttribute('fill',v<90?'#e8574a':(v<100?'#e0a020':'#2f9e5a'));
+      const sc=(v<90&&q>=1)?1+0.06*Math.sin(lt*10):1; it.el.setAttribute('transform',`translate(${it.e.x},${it.e.y}) scale(${sc}) translate(${-it.e.x},${-it.e.y})`);}
+    else if(it.k==='p'){it.el.style.strokeDashoffset=it.L*(1-p); it.el.setAttribute('fill-opacity',Math.max(0,Math.min(1,(lt-e)/0.3)));
+      if(p>0&&p<1){const pt=it.el.getPointAtLength(it.L*p); hx=pt.x; hy=pt.y;}}
+    else{const bb=it.bb; it.cr.setAttribute('x',bb.x-5); it.cr.setAttribute('width',(bb.width+10)*p);
+      if(p>0&&p<1){hx=bb.x+bb.width*p; hy=bb.y+bb.height*0.7;}}
+  });
+  const hand=document.getElementById('hand');
+  window.DRAW=(hx===null)?null:[hx,hy];
+  if(hx===null){ // rest / exit
+    const q=Math.max(0,Math.min(1,(lt-lastEnd)/0.5)); const q0=Math.max(0,Math.min(1,lt/0.15));
+    if(lt<0.15){hx=1150-200*q0; hy=760-200*q0;} else {hx=900+300*q; hy=520+300*q;}
+  }
+  hand.setAttribute('transform',`translate(${hx+Math.sin(T*9)*1.5},${hy+Math.cos(T*7)*1.5})`);
+  // scene-end erase
+  const fade=Math.max(0,Math.min(1,(D[i]-lt)/0.25)); document.getElementById('art').setAttribute('opacity', i<D.length-1?fade:1);
+  // subtitle
+  let ch=null; for(const c of CH){ if(T>=c.st-0.05 && T<c.en){ch=c;break;} }
+  const sub=document.getElementById('sub');
+  if(!ch){sub.style.visibility='hidden';} else {
+    sub.style.visibility='visible';
+    const age=T-ch.st; const pop=age<0.18?0.82+0.18*(age/0.18)+0.06*Math.sin(Math.PI*age/0.18):1;
+    sub.style.transform=`translateX(-50%) scale(${pop})`;
+    let cur=-1; ch.w.forEach((w,k)=>{if(T>=w.s-0.03)cur=k;});
+    const KC=['#ffd23f','#6ee7a0','#ff8a5c','#5cc8ff'];
+    sub.innerHTML=ch.w.map((w,k)=>{const key=/\d|tỷ|tiền|Tiền|nợ|kho|ngày|cọc|lương|gấp|đôi|lợi|nhuận|sổ|khách|chi|phí|vay|mặt|khoản|vốn|Dòng|dòng|cảnh|báo|mở|rộng/.test(w.t);
+      const col=key?KC[(ch.ci+k)%4]:'#ffffff';
+      if(k===cur) return `<span style="color:${KC[(ch.ci+k)%4]};transform:scale(1.18);margin:0 20px">${esc(w.t)}</span>`;
+      return `<span style="color:${col};opacity:${k<cur?1:0.6}">${esc(w.t)}</span>`;}).join('');
+  }
+}
+function sched(i){build(i);cur=i;return [starts[0][0],starts[starts.length-1][1]];}
+function init(s,d,w){S=s;D=d;W=w; let b=0;
+  w.forEach((ws,i)=>{let ph=[],cur=[];ws.forEach((x,k)=>{cur.push(x); if(k==ws.length-1||ws[k+1][3]!==x[3]){ph.push(cur);cur=[];}});
+    ph.forEach((p,pi)=>{
+      // split at commas, then balance pieces longer than 9 words
+      let segs=[],cur2=[];p.forEach((x,q)=>{cur2.push(x);if(x[4]===1&&q<p.length-1&&cur2.length>=3){segs.push(cur2);cur2=[];}});if(cur2.length){if(cur2.length<3&&segs.length){segs[segs.length-1]=segs[segs.length-1].concat(cur2);}else segs.push(cur2);}
+      let out=[];segs.forEach(sg=>{if(sg.length<=9){out.push(sg);}else{const n=Math.ceil(sg.length/8),sz=Math.ceil(sg.length/n);for(let j=0;j<sg.length;j+=sz)out.push(sg.slice(j,j+sz));}});
+      out.forEach((part,oi)=>{const nxt=(oi+1<out.length)?out[oi+1][0][0]:(pi+1<ph.length?ph[pi+1][0][0]:D[i]);
+        CH.push({ci:CH.length,st:b+part[0][0],en:b+Math.min(nxt,part[part.length-1][1]+0.6),w:part.map(z=>({t:z[2],s:b+z[0]}))});});
+    });
+    b+=D[i];});
+}
+</script></body></html>
