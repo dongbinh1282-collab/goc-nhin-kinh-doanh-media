@@ -37,7 +37,7 @@ Video thành phẩm KHÔNG lưu ở đây – nằm ở kho công khai `goc-nhin
 - Lời đọc đủ chủ ngữ – vị ngữ, văn phong học thức, lịch sự; kết "Phần sau sẽ là…", ngắt nghỉ, "Hẹn gặp lại các bạn." (không cảm ơn).
 - Dài 50–65 giây; giọng ~4 tiếng/giây; loudness −14 LUFS.
 
-## Cài đặt khi mở phiên mới
-- `pip install vieneu faster-whisper soundfile playwright` ; Chrome tại /usr/bin/google-chrome.
-- Model: https://huggingface.co/pnnbao-ump/VieNeu-TTS-v3-Turbo (Apache 2.0) → tải về, đặt `VIENEU_DIR`.
-- Font Montserrat (google-fonts) cho page.html.
+## Cài đặt khi mở phiên mới (không mất thời gian chờ)
+- Việc ĐẦU TIÊN: `nohup bash tools/setup.sh > /tmp/setup.log 2>&1 &` (chạy ngầm 2–5 phút: thư viện, model VieNeu, whisper, sửa symlink, nạp thử giọng).
+- Trong lúc chờ: viết `script2.json`, `scenes.py`, `cover.html`, sửa tiêu đề `page.html`.
+- Chỉ chạy `tts_vn.py` khi đã có `/tmp/setup.done`.

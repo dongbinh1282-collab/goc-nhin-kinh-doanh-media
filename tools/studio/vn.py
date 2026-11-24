@@ -8,4 +8,4 @@ def _f(repo,files,sub):
     return _orig(repo,files,sub)
 o.OnnxV3LiteEngine._fetch=staticmethod(_f)
 from vieneu import Vieneu
-def load(): return Vieneu(backbone_repo=__import__('os').environ.get('VIENEU_DIR','/home/claude/tiktok/vn/v3t'))
+def load(): return Vieneu(backbone_repo=__import__('os').environ.get('VIENEU_DIR','/home/claude/vn/v3t'))
