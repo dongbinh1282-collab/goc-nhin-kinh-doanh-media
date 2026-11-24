@@ -91,54 +91,65 @@ OR='#f08a3c'; PK='#f4a0a0'
 def X(cx,cy,r=60,w=10): return [P(L((cx-r,cy-r),(cx+r,cy+r)),None,w,RD),P(L((cx+r,cy-r),(cx-r,cy+r)),None,w,RD)]
 def cal2(x,y,num,k=1.0):
     return [P(R(x,y,200*k,200*k,16),'#ffffff',5),P(R(x,y,200*k,56*k,16),RD,5),T(x+100*k,y+42*k,'NGÀY',34,'#ffffff'),T(x+100*k,y+160*k,num,84,INK)]
-# 0 hook: Tết đến, tiền đi
-s=[T(540,95,'TẾT ĐẾN, TIỀN ĐI',66,RD),P(L((200,135),(880,135)),None,6,RD)]
-s+=cal(380,190,'TẾT',1.9)
-s+=coin(170,330,55)+coin(910,420,55)+coin(150,520,40)
-s+=[T(540,600,'Tuần nào thiếu tiền nhất?',50,INK)]
+# 0 hook: 13 tuần tới, tuần nào thiếu tiền
+def weeks(y,mark=10,q=True,tet=9,h=90):
+    e=[]; x0=76
+    e+=pre([P(R(x0+i*72,y,64,h,8),'#ffffff',4) for i in range(13)])
+    e+=tag(x0+tet*72-38,y-80,140,'TẾT',YL,38)
+    e+=[P(R(x0+mark*72,y,64,h,8),'#fbe3e0',6,RD)]
+    if q: e+=[T(x0+mark*72+32,y+h/2+22,'?',64,RD)]
+    return e
+s=[T(540,80,'BA THÁNG TỚI',62,RD)]
+s+=weeks(250,h=150)
+s+=[T(540,490,'13 tuần tới',56,'#2c5aa0'),T(540,570,'Tuần nào thiếu tiền nhất?',50,INK)]
 S.append(s)
-# 1 chi tiêu tăng, thu chậm
+# 1 chi tăng, thu chậm
 s=[T(540,80,'CHI TĂNG, THU CHẬM',56,RD)]
-s+=[P(R(50,180,420,330,22),'#fbe3e0',6,RD),T(260,250,'CHI',80,RD)]
-s+=coin(160,400,52)+coin(260,400,52)+coin(210,330,52)
-s+=[P(R(610,180,420,330,22),'#e4f5e8',6,'#1f7a3e'),T(820,250,'THU',80,'#1f7a3e')]
-s+=arrow(490,345,590,345,INK,10)
-s+=[T(540,600,'Tiền ra trước, tiền vào sau',50,INK)]
+s+=pre([P(R(50,170,420,360,22),'#fbe3e0',6,RD),P(R(610,170,420,360,22),'#e4f5e8',6,'#1f7a3e')])
+s+=[T(260,250,'CHI',80,RD)]+coin(170,380,52)+coin(270,380,52)+coin(220,312,52)+[T(260,490,'tăng trước Tết',42,RD)]
+s+=[T(820,250,'THU',80,'#1f7a3e')]+coin(820,370,52)+[T(820,490,'chậm sau Tết',42,'#1f7a3e')]
+s+=arrow(480,350,600,350,INK,10)
+s+=[T(540,600,'Không dùng số liệu tháng thường',46,INK)]
 S.append(s)
-# 2 chi dồn trước Tết
-s=[T(540,80,'CHI DỒN TRƯỚC TẾT',54,RD)]
-s+=tag(60,190,320,'Lương T13',OR,44)+tag(410,190,280,'Thưởng',OR,44)+tag(680,190,350,'Hàng Tết',OR,44)
-s+=arrow(220,270,450,410,RD,8)+arrow(550,270,540,400,RD,8)+arrow(860,270,640,410,RD,8)
-s+=coin(540,450,80)+[T(540,580,'200 → 400 triệu',56,RD)]
+# 2 chi dồn trước Tết + ví dụ
+s=[T(540,80,'CHI DỒN TRƯỚC TẾT',56,RD)]
+s+=tag(20,160,380,'Lương tháng 13',OR,40)+tag(420,160,300,'Tiền thưởng',OR,40)+tag(740,160,290,'Hàng, thuế',OR,40)
+s+=arrow(230,235,280,350,RD,8)+arrow(555,235,340,370,RD,8)+arrow(860,235,380,400,RD,8)
+s+=coin(300,450,80)
+s+=pre([P(L((500,560),(1010,560)),None,6,INK)])
+s+=[P(R(560,440,140,120,8),BL,5),T(630,425,'200 tr',44,'#2c5aa0'),T(630,610,'Tháng thường',40,INK)]
+s+=[P(R(840,320,140,240,8),RD,5),T(910,305,'400 tr',44,RD),T(910,610,'Trước Tết',40,INK)]
 S.append(s)
-# 3 thu chậm sau Tết
-s=[T(540,80,'THU CHẬM SAU TẾT',54,RD)]
-s+=cal2(120,160,'15',1.0)+[T(220,400,'Tiền thu = 0',44,RD)]
-s+=cal2(700,160,'25',1.0)+[T(800,400,'Khách trả muộn',40,'#1f7a3e')]
-s+=arrow(340,260,660,260,INK,8)+[T(540,235,'dời 2 đến 3 tuần',44,INK)]
-s+=[P(R(150,500,780,110,16),'#fff3d6',5,'#e0a020'),T(540,570,'Tính tiền thu theo ngày thật',46,'#b36b00')]
+# 3 thu muộn sau Tết
+s=[T(540,80,'TIỀN THU VỀ MUỘN',56,RD)]
+s+=pre([P(R(30,170,330,210,20),'#e6f0fb',6,'#2c5aa0'),P(R(720,170,330,210,20),'#e4f5e8',6,'#1f7a3e')])
+s+=[T(195,245,'Hẹn thu',46,'#2c5aa0'),T(195,325,'sát Tết',54,INK)]
+s+=arrow(375,300,705,300,RD,9)+[T(540,265,'+2–3 tuần',44,RD)]
+s+=[T(885,245,'Thực thu',46,'#1f7a3e'),T(885,325,'sau Tết',54,INK)]
+s+=pre([P(R(60,440,960,120,18),'#fbe3e0',5,RD)])+[T(540,515,'Nghỉ Tết: gần như không có tiền vào',42,RD)]
 S.append(s)
 # 4 tuần đáy
-s=[T(540,80,'TUẦN ĐÁY',60,RD)]
-s+=[P(L((120,240),(120,640),(960,640)),None,8,INK)]
-s+=[P(L((150,300),(300,380),(450,470),(560,600),(700,520),(840,350),(930,300)),None,12,RD)]
-s+=[P(C(560,600,22),None,8,RD),T(560,690,'Đáy sau Tết',44,RD)]
-s+=[T(540,780,'Quỹ thấp nhất trong quý',42,INK)]
+s=[T(540,80,'TUẦN ĐÁY',62,RD)]
+s+=pre([P(L((120,200),(120,560),(980,560)),None,8,INK)])
+s+=[P(L((470,170),(470,560)),None,4,GY)]+tag(400,130,140,'TẾT',YL,38)
+s+=[P(L((150,260),(300,300),(420,380),(470,430),(570,520),(690,450),(830,320),(950,270)),None,12,RD)]
+s+=[P(C(570,520,24),None,8,RD),T(570,610,'Đáy: ngay sau Tết',44,RD)]
+s+=[T(930,610,'tuần',40,INK)]
 S.append(s)
-# 5 ngân hàng
-s=[T(540,80,'CHUẨN BỊ SỚM',60,RD)]
-s+=person(470,330,1.3,'happy','point',BL,tie=True,legs=False)
-s+=bubble(700,160,300,110,'Hạn mức vay?',38)
-s+=coin(250,560,60)+coin(400,560,60)+coin(550,560,60)
-s+=[T(540,700,'Có sẵn trước khi cần',48,'#1f7a3e')]
+# 5 chuẩn bị sớm
+s=[T(540,80,'CHUẨN BỊ SỚM',62,RD)]
+s+=person(270,250,1.4,'happy','point',BL,tie=True,legs=False)
+s+=tag(540,190,460,'Ngân hàng',BL,46)+tag(540,300,460,'Nhà cung cấp',OR,46)
+s+=[check(500,230,0.9),check(500,340,0.9)]
+s+=[T(770,470,'Làm ngay từ bây giờ',50,'#1f7a3e')]
 S.append(s)
-# 6 kết: không phải vì Tết
-s=[T(540,140,'KHÔNG PHẢI VÌ TẾT',60,RD)]
-s+=[T(540,260,'Mà vì không thấy trước',48,INK),T(540,330,'tuần khó nhất',54,INK)]
-s+=coin(540,500,80)+[T(540,640,'Biết trước là chủ động',46,'#2c5aa0')]
+# 6 kết
+s=[T(540,110,'KHÔNG PHẢI VÌ TẾT',62,RD)]
+s+=[T(540,200,'mà vì không thấy trước',50,INK),T(540,270,'tuần khó nhất',58,RD)]
+s+=weeks(430,10,False,9,80)
 S.append(s)
 # 7 teaser
-s=pre([P(R(140,110,800,360,28),'#fff3d6',6)])+[T(540,200,'PHẦN SAU',60,RD),T(540,300,'Hạn mức vay',58,INK),T(540,385,'trước khi cần',54,'#2c5aa0')]
-s+=doc(470,490,140,130,3,False)
+s=pre([P(R(140,90,800,330,28),'#fff3d6',6)])+[T(540,180,'PHẦN SAU',60,RD),T(540,280,'Hạn mức vay',58,INK),T(540,360,'trước khi cần',54,'#2c5aa0')]
+s+=[P(Z((400,500),(540,445),(680,500)),'#e6f0fb',5)]+[P(R(420+i*70,505,34,80,4),'#ffffff',4) for i in range(4)]+[P(R(390,585,300,24,4),'#e6f0fb',5)]
 S.append(s)
 json.dump(S,open('scenes.json','w'),ensure_ascii=False); print([len(x) for x in S])
