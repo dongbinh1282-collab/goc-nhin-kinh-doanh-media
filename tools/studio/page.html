@@ -32,7 +32,7 @@ function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
 function build(i){
   const g=document.getElementById('art'); let h='';
   S[i].forEach((e,j)=>{
-    if(e.k==='c'){h+=`<text id="e${j}" x="${e.x}" y="${e.y}" text-anchor="middle" font-family="M" font-weight="900" font-size="${e.size}" fill="#2f9e5a">${e.from} ngày</text>`;}
+    if(e.k==='c'){h+=`<text id="e${j}" x="${e.x}" y="${e.y}" text-anchor="middle" font-family="M" font-weight="900" font-size="${e.size}" fill="#2f9e5a">${e.from}${e.suf??' ngày'}</text>`;}
     else if(e.k==='p'){h+=`<path filter="url(#rough)" id="e${j}" d="${e.d}" fill="${e.fill||'none'}" fill-opacity="0" stroke="${e.col}" stroke-width="${e.sw}" stroke-linecap="round" stroke-linejoin="round"/>`;}
     else{h+=`<clipPath id="c${j}"><rect id="cr${j}" x="0" y="0" width="0" height="700"/></clipPath><text id="e${j}" x="${e.x}" y="${e.y}" text-anchor="${e.anchor}" clip-path="url(#c${j})" font-family="M" font-weight="800" font-size="${e.size}" fill="${e.col}">${esc(e.txt)}</text>`;}
   });
@@ -55,7 +55,7 @@ function setT(T){
   let hx=null,hy=null,lastEnd=0;
   items.forEach((it,j)=>{const [s,e]=starts[j]; const p=Math.max(0,Math.min(1,(lt-s)/(e-s))); lastEnd=Math.max(lastEnd,e);
     if(it.k==='c'){const q=Math.max(0,Math.min(1,(lt-it.e.t0)/(it.e.t1-it.e.t0)));const ez=1-Math.pow(1-q,2);const v=Math.round(it.e.from+(it.e.to-it.e.from)*ez);
-      it.el.textContent=v+' ngày'; it.el.setAttribute('fill',v<90?'#e8574a':(v<100?'#e0a020':'#2f9e5a'));
+      it.el.textContent=v+(it.e.suf??' ngày'); it.el.setAttribute('fill',v<90?'#e8574a':(v<100?'#e0a020':'#2f9e5a'));
       const sc=(v<90&&q>=1)?1+0.06*Math.sin(lt*10):1; it.el.setAttribute('transform',`translate(${it.e.x},${it.e.y}) scale(${sc}) translate(${-it.e.x},${-it.e.y})`);}
     else if(it.k==='p'){it.el.style.strokeDashoffset=it.L*(1-p); it.el.setAttribute('fill-opacity',Math.max(0,Math.min(1,(lt-e)/0.3)));
       if(p>0&&p<1){const pt=it.el.getPointAtLength(it.L*p); hx=pt.x; hy=pt.y;}}
