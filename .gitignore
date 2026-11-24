@@ -7,3 +7,5 @@ tools/tap*/*.raw
 tools/tap*/*.m4a
 tools/tap*/*.mp4
 tools/tap*/pv_*.jpg
+tools/tap*/qa_*.jpg
+tools/tap*/*.log

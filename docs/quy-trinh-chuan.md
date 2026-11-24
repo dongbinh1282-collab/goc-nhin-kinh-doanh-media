@@ -46,3 +46,14 @@ Kênh cá nhân của anh Bình. Không ghi tên anh trong video. Mỗi tập ch
 - Chủ đề tập mới phải là lời hẹn "Phần sau sẽ là…" của tập trước. Không tự đổi chủ đề.
 - Viết với vai hội đồng chuyên gia: chuyên gia tài chính kiểm tra số liệu và công thức, biên tập viên kiểm tra câu mở và độ trùng lặp, người giữ chuẩn kênh kiểm tra độ dài, văn phong và câu kết.
 - Mọi con số trong ví dụ phải ghi là ví dụ minh họa, không trình bày như số liệu thống kê.
+
+## 10. Kiểm tra bắt buộc trước khi giao – chống làm ẩu (anh Bình yêu cầu, 24/11/2026)
+Bài học tập 9: giao video khi chưa nghe lại lời đọc và chưa xem hết khung hình → lời đọc sai, 3 giây đầu trống, chữ tràn, hình không khớp lời. Từ nay KHÔNG được giao nếu chưa qua đủ các bước sau:
+1. Chạy `python3 ../studio/qa.py` trong thư mục tập. Mọi câu phải "OK" (whisper medium nghe lại). Câu "SAI" → đổi từ (vd "dồn"→"xếp", "mùa Tết"→"dịp Tết", "thanh toán"→"trả tiền", tránh "thưởng" cạnh "thường"), xóa cache câu đó, tạo lại giọng, chạy lại qa.py.
+2. Mở `qa_sheet.jpg` (21 khung, mỗi 3 giây) và xem HẾT. Đạt khi:
+   - 3 giây đầu đã có hình đầy đủ, rõ chủ đề (khung, bảng, lịch dùng `pre(...)` để hiện ngay).
+   - Không chữ tràn khỏi ô, không chữ bị cắt ở mép dưới khung giấy (toạ độ y của chữ ≤ 610), chữ ≥ 40 px.
+   - Mọi con số, nhãn trên hình khớp với lời đọc và có nghĩa (không để số mặc định như "30" của hàm `cal`).
+   - Không cảnh nào đứng yên quá 5 giây: câu ví dụ dài phải có hình mới xuất hiện theo.
+   - Không ô, khung nào để trống.
+3. Khi giao, báo kèm kết quả: số câu OK, độ dài, loudness, đã xem 21 khung, và thời gian làm.

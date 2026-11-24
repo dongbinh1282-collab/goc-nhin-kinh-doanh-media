@@ -49,6 +49,8 @@ Bộ máy `studio/page.html` đã cài sẵn 1–3; các tập mới copy `tap08
 7. Số liệu trên hình phải có nghĩa (vd Ngày 5 → Ngày 30 = 25 ngày), không lặp số vô nghĩa.
 8. Kiểm tra trước khi giao: trích 20 khung (mỗi 3 giây) xem đủ 1–7; kiểm danh sách cụm phụ đề < 4 từ phải rỗng; đo loudness −14 LUFS.
 
+## Trước khi giao: BẮT BUỘC chạy `studio/qa.py` và xem hết `qa_sheet.jpg` (xem docs/quy-trinh-chuan.md mục 10)
+
 ## Cài đặt khi mở phiên mới (không mất thời gian chờ)
 - Việc ĐẦU TIÊN: `nohup bash tools/setup.sh > /tmp/setup.log 2>&1 &` (chạy ngầm 2–5 phút: thư viện, model VieNeu, whisper, sửa symlink, nạp thử giọng).
 - Trong lúc chờ: viết `script2.json`, `scenes.py`, `cover.html`, sửa tiêu đề `page.html`.
