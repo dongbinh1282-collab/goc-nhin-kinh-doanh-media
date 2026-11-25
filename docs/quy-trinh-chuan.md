@@ -75,3 +75,11 @@ Bài học tập 11 (48 phút): 4 vòng tạo lại giọng vì từ đọc sai 
 - Viết scenes.py cũng trước khi gửi duyệt; chạy check_de.py + `cap.py pv` 3–4 khung xem trước. Nhãn ≥ 42 px, cảnh PHẦN SAU để chữ trong pre().
 - Sau khi anh duyệt chỉ còn: make.sh (2') → qa.py + xem qa_sheet (2') → đẩy kho + lên lịch (1').
 - CHỐT (anh Bình 25/11/2026): gửi kịch bản cho anh NGAY sau check_trung + check_tu, đồng thời chạy NỀN giọng đọc + qa.py + scenes/check_de. Anh duyệt xong chỉ còn make.sh → qa → giao (~5–7 phút). Câu anh sửa thì tạo lại riêng câu đó.
+
+## 14. Tiết kiệm token (anh Bình 25/11/2026) – BẮT BUỘC
+1. Lên lịch Metricool: KHÔNG tải cả tháng. Ngày đăng = ngày sau tập trước (bảng dưới), getScheduledPosts chỉ tra đúng 1 ngày nếu cần.
+2. Chỉ dùng `bash studio/lam_tap.sh tapNN kiemtra|nen|dung|day`. Không cat cả file, không in toàn bộ qa.py.
+3. Xem qa_sheet.jpg MỘT lần, sau khi các bước dò đã ĐẠT.
+4. Trả lời anh ngắn: kết quả + thời gian + việc cần duyệt.
+5. Mở cửa sổ mới sau khoảng 3 tập.
+Lịch đã lên (19:30): Tập 10 → 05/12/2026 · Tập 11 → 06/12 · Tập 12 → 07/12. Tập 13 → 08/12 (tiếp theo +1 ngày). Chủ đề tập 13: cách đọc biên lợi nhuận gộp từng sản phẩm.
