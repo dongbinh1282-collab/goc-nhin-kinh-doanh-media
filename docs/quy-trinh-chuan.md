@@ -82,7 +82,7 @@ Bài học tập 11 (48 phút): 4 vòng tạo lại giọng vì từ đọc sai 
 3. Xem qa_sheet.jpg MỘT lần, sau khi các bước dò đã ĐẠT.
 4. Trả lời anh ngắn: kết quả + thời gian + việc cần duyệt.
 5. Mở cửa sổ mới sau khoảng 3 tập.
-Lịch đã lên (19:30): Tập 10 → 05/12/2026 · Tập 11 → 06/12 · Tập 12 → 07/12. Tập 13 → 08/12 (tiếp theo +1 ngày). Chủ đề tập 13: cách đọc biên lợi nhuận gộp từng sản phẩm.
+Lịch đã lên (19:30): Tập 10 → 05/12/2026 · Tập 11 → 06/12 · Tập 12 → 07/12. Tập 13 → 08/12 (đã lên lịch). Tập 14 → 09/12 (tiếp theo +1 ngày). Chủ đề tập 14: cách định giá lại sản phẩm có biên lợi nhuận gộp thấp mà không mất khách hàng. Tập mới copy page.html + scenes.py từ tap13 (mẫu chuẩn mới).
 
 ## 15. Rà chuyên môn TRƯỚC khi gửi kịch bản (anh Bình 25/11/2026 – không để anh phải bảo "kiểm tra lại")
 Trước khi gửi, tự rà từng câu theo bảng này, sửa xong mới gửi:
