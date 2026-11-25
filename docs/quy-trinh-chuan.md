@@ -61,3 +61,11 @@ Bài học tập 9: giao video khi chưa nghe lại lời đọc và chưa xem h
 ## 11. Công cụ kiểm tra tự động bắt buộc (25/11/2026)
 - Kịch bản: `python3 studio/check_trung.py tapNN` (trong tools/) phải ĐẠT trước khi gửi anh duyệt.
 - Hình: sau `python3 scenes.py`, chạy `python3 ../studio/check_de.py` trong thư mục tập, phải ĐẠT (0 chữ đè lên khung, 0 chữ sát đáy > 615) trước khi dựng video. Lỗi tập 11: chữ "Ghi vào hợp đồng" đè lên khung giấy.
+
+## 12. Quy trình nhanh – mục tiêu ≤ 15 phút sau khi anh duyệt kịch bản (25/11/2026)
+Bài học tập 11 (48 phút): 4 vòng tạo lại giọng vì từ đọc sai (~20 phút), dựng video 3 lần vì lỗi hình phát hiện muộn (~6 phút), tạo giọng chạy tuần tự (~9 phút).
+1. Trước khi gửi kịch bản: chạy `python3 studio/check_trung.py tapNN` VÀ `python3 studio/check_tu.py tapNN`, cả hai ĐẠT. Kịch bản gửi anh đã là bản đọc được, không đổi từ sau khi duyệt.
+2. Ngay khi anh duyệt: chạy giọng NỀN `nohup python3 ../studio/tts_vn.py > /tmp/tts.log 2>&1 &`.
+3. Trong lúc chờ giọng: viết scenes.py, chạy `scenes.py` + `../studio/check_de.py` tới ĐẠT, xem 1–2 khung `cap.py pv`.
+4. Giọng xong → `qa.py` một lần → `make.sh` một lần → `qa.py` → xem qa_sheet → giao.
+5. Câu SAI mới: thêm từ đó vào RUI_RO trong check_tu.py để tập sau không lặp.
