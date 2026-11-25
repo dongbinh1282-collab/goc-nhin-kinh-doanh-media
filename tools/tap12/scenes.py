@@ -1,0 +1,137 @@
+import json, math
+SK='#F6D2B4'; BL='#7DB3E8'; RD='#E8574A'; YL='#F5C842'; GR='#6CC27A'; INK='#1f2533'; GY='#cfd3da'
+def C(cx,cy,r): return f"M{cx+r},{cy} A{r},{r} 0 1 1 {cx-r},{cy} A{r},{r} 0 1 1 {cx+r},{cy}"
+def L(*p): return 'M'+' L'.join(f'{x},{y}' for x,y in p)
+def Z(*p): return L(*p)+' Z'
+def R(x,y,w,h,r=0):
+    if r==0: return Z((x,y),(x+w,y),(x+w,y+h),(x,y+h))
+    return f"M{x+r},{y} L{x+w-r},{y} Q{x+w},{y} {x+w},{y+r} L{x+w},{y+h-r} Q{x+w},{y+h} {x+w-r},{y+h} L{x+r},{y+h} Q{x},{y+h} {x},{y+h-r} L{x},{y+r} Q{x},{y} {x+r},{y} Z"
+def A(cx,cy,r,a0,a1):
+    x0=cx+r*math.cos(math.radians(a0)); y0=cy+r*math.sin(math.radians(a0)); x1=cx+r*math.cos(math.radians(a1)); y1=cy+r*math.sin(math.radians(a1))
+    large=1 if (a1-a0)%360>180 else 0
+    return f"M{x0:.1f},{y0:.1f} A{r},{r} 0 {large} 1 {x1:.1f},{y1:.1f}"
+def P(d,fill=None,sw=5,col=INK): return dict(k='p',d=d,fill=fill,sw=sw,col=col)
+def T(x,y,txt,size=34,col=INK,anchor='middle',w=800): return dict(k='t',x=x,y=y,txt=txt,size=size,col=col,anchor=anchor,w=w)
+BR='#c98a4b'
+NV='#34405a'; SH='#2a2a2a'
+def person(cx,cy,s=1.0,mood='ok',arms='down',shirt=BL,hair=INK,legs=True,tie=False,glasses=False):
+    e=[]; hr=40*s; by=cy+hr+6*s; bh=115*s; bw=46*s
+    if legs:
+        e+=[P(R(cx-bw*0.75,by+bh-6,bw*0.68,70*s,6),NV,4),P(R(cx+bw*0.07,by+bh-6,bw*0.68,70*s,6),NV,4),
+            P(R(cx-bw*0.95,by+bh+60*s,bw*0.9,16*s,7),SH,4),P(R(cx+bw*0.05,by+bh+60*s,bw*0.9,16*s,7),SH,4)]
+    e.append(P(R(cx-8*s,cy+hr-6*s,16*s,16*s,3),SK,4))
+    body=f"M{cx-bw*0.55},{by} Q{cx},{by-10*s} {cx+bw*0.55},{by} Q{cx+bw*1.05},{by+8*s} {cx+bw*0.95},{by+bh} L{cx-bw*0.95},{by+bh} Q{cx-bw*1.05},{by+8*s} {cx-bw*0.55},{by} Z"
+    e.append(P(body,shirt,5))
+    if tie: e.append(P(Z((cx,by+2),(cx+8*s,by+20*s),(cx,by+70*s),(cx-8*s,by+20*s)),RD,3))
+    else: e.append(P(L((cx-12*s,by+2),(cx,by+16*s),(cx+12*s,by+2)),None,4))
+    def arm(x0,y0,x1,y1,x2,y2):
+        return [P(f"M{x0},{y0} Q{x1},{y1} {x2},{y2}",None,15*s,INK),P(f"M{x0},{y0} Q{x1},{y1} {x2},{y2}",None,9*s,shirt),P(C(x2,y2,9*s),SK,4)]
+    L0=(cx-bw*0.8,by+14*s); R0=(cx+bw*0.8,by+14*s)
+    A={'down':((cx-bw*1.2,by+50*s,cx-bw*1.15,by+bh*0.9),(cx+bw*1.2,by+50*s,cx+bw*1.15,by+bh*0.9)),
+       'point':((cx-bw*1.2,by+50*s,cx-bw*1.15,by+bh*0.9),(cx+bw*1.6,by+10*s,cx+bw*2.6,by-5*s)),
+       'up':((cx-bw*1.6,by-10*s,cx-bw*1.9,by-70*s),(cx+bw*1.6,by-10*s,cx+bw*1.9,by-70*s)),
+       'head':((cx-bw*1.7,by-5*s,cx-hr*0.95,cy-hr*0.3),(cx+bw*1.7,by-5*s,cx+hr*0.95,cy-hr*0.3)),
+       'phone':((cx-bw*1.2,by+50*s,cx-bw*1.15,by+bh*0.9),(cx+bw*1.5,by+30*s,cx+hr*0.9,cy+hr*0.2)),
+       'relax':((cx-bw*1.7,by-5*s,cx-hr*0.6,cy-hr*0.9),(cx+bw*1.7,by-5*s,cx+hr*0.6,cy-hr*0.9))}[arms]
+    e+=arm(L0[0],L0[1],*A[0])+arm(R0[0],R0[1],*A[1])
+    e+=[P(C(cx-hr*0.98,cy+4*s,9*s),SK,4),P(C(cx+hr*0.98,cy+4*s,9*s),SK,4)]
+    e.append(P(C(cx,cy,hr),SK,5))
+    e.append(P(f"M{cx-hr*1.02},{cy-hr*0.05} Q{cx-hr*1.1},{cy-hr*1.25} {cx},{cy-hr*1.18} Q{cx+hr*1.1},{cy-hr*1.25} {cx+hr*1.02},{cy-hr*0.05} Q{cx+hr*0.6},{cy-hr*0.75} {cx-hr*0.1},{cy-hr*0.55} Q{cx-hr*0.6},{cy-hr*0.5} {cx-hr*1.02},{cy-hr*0.05} Z",hair,4))
+    e+=[P(C(cx-hr*0.36,cy+hr*0.05,4.5*s),INK,3),P(C(cx+hr*0.36,cy+hr*0.05,4.5*s),INK,3)]
+    if glasses: e+=[P(C(cx-hr*0.36,cy+hr*0.05,12*s),None,3),P(C(cx+hr*0.36,cy+hr*0.05,12*s),None,3),P(L((cx-hr*0.24,cy+hr*0.05),(cx+hr*0.24,cy+hr*0.05)),None,3)]
+    if mood in('ok','happy'): e.append(P(A_(cx,cy+hr*0.2,hr*0.38,25,155),'#ffffff' if mood=='happy' else None,4))
+    else: e.append(P(A_(cx,cy+hr*0.85,hr*0.32,215,325),None,4))
+    if mood=='stress': e+=[P(f"M{cx+hr*1.2},{cy-hr*0.7} Q{cx+hr*1.4},{cy-hr*0.2} {cx+hr*1.2},{cy-hr*0.05} Q{cx+hr*1.0},{cy-hr*0.2} {cx+hr*1.2},{cy-hr*0.7}",'#9fd3ff',3)]
+    return e
+A_=A
+def phone(x,y,s=1.0,ring=True):
+    e=[P(R(x,y,64*s,118*s,12),'#3b3f4a',5),P(R(x+7*s,y+14*s,50*s,84*s,4),'#bfe3ff',3)]
+    if ring:
+        for k in range(2): e+=[P(A(x+32*s,y+58*s,(60+k*24)*s,-55,15),None,5,RD),P(A(x+32*s,y+58*s,(60+k*24)*s,165,235),None,5,RD)]
+    return e
+def bubble(x,y,w,h,txt,size=32,col='#ffffff'):
+    return [P(R(x,y,w,h,20)+f" M{x+34},{y+h} L{x+22},{y+h+28} L{x+62},{y+h}",col,4),T(x+w/2,y+h/2+size*0.36,txt,size)]
+def check(x,y,s=1.0,col=GR): return P(L((x,y),(x+18*s,y+20*s),(x+52*s,y-22*s)),None,9,col)
+def doc(x,y,w,h,lines=4,ck=True):
+    e=[P(R(x,y,w,h,10),'#ffffff')]
+    for k in range(lines):
+        yy=y+40+k*(h-60)/max(1,lines-1)
+        if ck: e+=[P(R(x+20,yy-14,24,24,4),'#e6f6ea',3),check(x+22,yy-2,0.45)]
+        e.append(P(L((x+60,yy),(x+w-25,yy)),None,6,GY))
+    return e
+def beach(x,y,s=1.0):
+    return [P(L((x,y),(x+160*s,y-70*s)),None,8,BR if False else '#8b5a2b'),P(Z((x+20*s,y-10*s),(x+170*s,y-75*s),(x+190*s,y-40*s),(x+40*s,y+20*s)),'#ffd9a0',5),
+            P(L((x+40*s,y+20*s),(x+30*s,y+70*s)),None,7),P(L((x+170*s,y-50*s),(x+185*s,y+70*s)),None,7)]
+import math
+def coin(x,y,r=26): return [P(C(x,y,r),YL,4),P(C(x,y,r*0.62),None,3,'#c99a10'),T(x,y+r*0.36,'$',r*0.95,'#a87a00')]
+def box(x,y,s=1.0): return [P(R(x,y,90*s,70*s,4),'#e7b97d',4),P(L((x,y+18*s),(x+90*s,y+18*s)),None,3),P(R(x+35*s,y,20*s,18*s,0),'#f3d3a3',3)]
+def arrow(x0,y0,x1,y1,col=INK,w=7):
+    a=math.atan2(y1-y0,x1-x0);h=22
+    return [P(L((x0,y0),(x1,y1)),None,w,col),P(L((x1-h*math.cos(a-0.5),y1-h*math.sin(a-0.5)),(x1,y1),(x1-h*math.cos(a+0.5),y1-h*math.sin(a+0.5))),None,w,col)]
+def pre(lst):
+    for e in lst: e['pre']=True
+    return lst
+def pre(lst):
+    for e in lst: e['pre']=True
+    return lst
+S=[]
+def stack(x,y,cols,rows,s=0.8):
+    e=[]
+    for r in range(rows):
+        for c in range(cols): e+=box(x+c*76*s,y-r*58*s,s)
+    return e
+def wallet(x,y):
+    return [P(R(x,y,190,130,18),'#8b5a2b',5),P(R(x+110,y+40,90,50,12),'#a8743e',4),P(C(x+140,y+65,8),YL,3)]
+
+def cal(x,y,lab,s=1.0):
+    return [P(R(x,y,170*s,170*s,14),'#ffffff',5),P(R(x,y,170*s,48*s,14),RD,5),T(x+85*s,y+36*s,lab,int(28*s),'#ffffff'),T(x+85*s,y+132*s,'30',int(70*s),INK)]
+def tag(x,y,w,lab,c,size=32):
+    return [P(R(x,y,w,64,14),c,5),T(x+w/2,y+44,lab,size,INK)]
+OR='#f08a3c'; PK='#f4a0a0'
+def X(cx,cy,r=60,w=10): return [P(L((cx-r,cy-r),(cx+r,cy+r)),None,w,RD),P(L((cx+r,cy-r),(cx-r,cy+r)),None,w,RD)]
+def cal2(x,y,num,k=1.0):
+    return [P(R(x,y,200*k,200*k,16),'#ffffff',5),P(R(x,y,200*k,56*k,16),RD,5),T(x+100*k,y+42*k,'NGÀY',34,'#ffffff'),T(x+100*k,y+160*k,num,84,INK)]
+GN='#1f7a3e'; DB='#2c5aa0'
+def bank(x,y,s=1.0,fill='#e6f0fb'):
+    w=300*s
+    e=[P(Z((x,y+70*s),(x+w/2,y),(x+w,y+70*s)),fill,5)]
+    e+=[P(R(x+30*s+i*66*s,y+82*s,34*s,130*s,4),'#ffffff',4) for i in range(4)]
+    e+=[P(R(x-10*s,y+212*s,w+20*s,30*s,4),fill,5)]
+    return e
+# 0 hook
+s=pre([T(540,80,'GIÁ NHẬP TĂNG',62,RD)]+box(140,230,2.0)+arrow(380,420,380,200,RD,10))
+s+=pre(person(760,250,1.4,'stress','head',BL,tie=True,legs=False))
+s+=[T(540,580,'Lợi nhuận bị bào mòn',50,RD)]
+S.append(s)
+# 1 đòn bẩy giá vốn
+s=[T(540,80,'GIÁ VỐN 60% DOANH THU',52,RD)]
+s+=pre(tag(60,150,460,'Lợi nhuận 6%',YL,44)+tag(560,150,460,'Giảm giá nhập 5%',GR,44))
+s+=pre([P(R(140,270,140,40,6),YL,4),T(210,340,'6%',44,INK)])
+s+=[P(R(560,270,140,40,6),YL,4),P(R(700,270,70,40,6),GR,4),T(665,340,'9%',44,GN)]
+s+=[*arrow(320,290,520,290,INK,7),T(540,440,'Lợi nhuận tăng một nửa',52,GN),T(540,520,'60% × 5% = 3% doanh thu',42,DB)]
+S.append(s)
+# 2 chuẩn bị
+s=[T(540,80,'TRƯỚC BUỔI ĐÀM PHÁN',54,RD)]
+s+=pre(doc(80,160,260,200,3)+doc(400,160,260,200,3))
+s+=[T(370,420,'Hai báo giá thay thế',46,DB)]
+s+=pre(coin(860,250,70))
+s+=[T(860,380,'Giá nguyên liệu',40,OR),T(540,540,'Đàm phán bằng số liệu',50,GN)]
+S.append(s)
+# 3 sản lượng năm + tổng chi phí
+s=[T(540,80,'CAM KẾT CẢ NĂM',58,RD)]
+s+=pre(stack(80,300,2,2,0.9)+stack(330,300,2,2,0.9)+stack(580,300,2,2,0.9)+stack(830,300,1,2,0.9))
+s+=[T(540,430,'Nhận hàng theo từng đợt',46,DB)]
+s+=tag(100,490,880,'Tính tổng chi phí, không chỉ đơn giá',GR,42)
+S.append(s)
+# 4 hợp đồng
+s=[T(540,80,'ĐIỀU KHOẢN GIÁ',60,RD)]
+s+=pre(doc(80,150,420,260,4))
+s+=pre(arrow(680,360,680,190,RD,10)+arrow(860,190,860,360,GN,10))
+s+=[T(770,410,'Tăng và giảm',44,INK)]
+s+=tag(100,470,880,'Không ép nhà cung cấp đến mức lỗ',RD,42)
+S.append(s)
+# 5 teaser
+s=pre([P(R(140,90,800,330,28),'#fff3d6',6),T(540,180,'PHẦN SAU',60,RD),T(540,280,'Biên lợi nhuận gộp',56,INK),T(540,360,'từng sản phẩm',50,DB)])
+s+=stack(400,520,3,2,0.9)
+S.append(s)
+json.dump(S,open('scenes.json','w'),ensure_ascii=False); print([len(x) for x in S])

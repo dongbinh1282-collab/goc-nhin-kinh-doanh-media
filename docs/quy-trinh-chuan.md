@@ -69,3 +69,8 @@ Bài học tập 11 (48 phút): 4 vòng tạo lại giọng vì từ đọc sai 
 3. Trong lúc chờ giọng: viết scenes.py, chạy `scenes.py` + `../studio/check_de.py` tới ĐẠT, xem 1–2 khung `cap.py pv`.
 4. Giọng xong → `qa.py` một lần → `make.sh` một lần → `qa.py` → xem qa_sheet → giao.
 5. Câu SAI mới: thêm từ đó vào RUI_RO trong check_tu.py để tập sau không lặp.
+
+## 13. Mục tiêu 10 phút (25/11/2026, bài học tập 12: 21 phút do 2 vòng đọc lại giọng + 1 lần dựng lại)
+- Tạo giọng + qa.py NGAY KHI VIẾT KỊCH BẢN, trước khi gửi anh duyệt. Kịch bản gửi anh = bản đã đọc đúng 100%. Anh sửa câu nào chỉ tạo lại câu đó (có cache).
+- Viết scenes.py cũng trước khi gửi duyệt; chạy check_de.py + `cap.py pv` 3–4 khung xem trước. Nhãn ≥ 42 px, cảnh PHẦN SAU để chữ trong pre().
+- Sau khi anh duyệt chỉ còn: make.sh (2') → qa.py + xem qa_sheet (2') → đẩy kho + lên lịch (1').

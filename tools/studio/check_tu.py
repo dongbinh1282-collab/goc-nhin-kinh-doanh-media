@@ -11,7 +11,7 @@ RUI_RO = {  # từ hay sai : cách thay đã đọc đúng
  'cạn': 'hết',
  'suất': 'mức', 'nên': 'hãy', 'lăm': 'nửa tháng / một tháng rưỡi',
  'ví dụ': 'số liệu minh họa', 'khoản này': 'điều kiện này',
- 'thưởng': 'tiền thưởng (tránh cạnh "thường")', 'dồn': 'xếp', 'mùa tết': 'dịp Tết',
+ 'thưởng': 'tiền thưởng (tránh cạnh "thường")', 'dồn': 'xếp', 'mùa tết': 'dịp Tết', 'ròng': 'sau thuế', 'minh họa bằng số': 'giả định', 'ghi vào': 'hợp đồng cần có',
 }
 OK_CUM = ['ngân hàng cho vay', 'chi phí vay', 'hạn mức ngắn hạn', 'siết tín dụng', 'tiền lãi']
 tap = sys.argv[1]
