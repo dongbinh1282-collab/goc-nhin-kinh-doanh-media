@@ -57,3 +57,7 @@ Bài học tập 9: giao video khi chưa nghe lại lời đọc và chưa xem h
    - Không cảnh nào đứng yên quá 5 giây: câu ví dụ dài phải có hình mới xuất hiện theo.
    - Không ô, khung nào để trống.
 3. Khi giao, báo kèm kết quả: số câu OK, độ dài, loudness, đã xem 21 khung, và thời gian làm.
+
+## 11. Công cụ kiểm tra tự động bắt buộc (25/11/2026)
+- Kịch bản: `python3 studio/check_trung.py tapNN` (trong tools/) phải ĐẠT trước khi gửi anh duyệt.
+- Hình: sau `python3 scenes.py`, chạy `python3 ../studio/check_de.py` trong thư mục tập, phải ĐẠT (0 chữ đè lên khung, 0 chữ sát đáy > 615) trước khi dựng video. Lỗi tập 11: chữ "Ghi vào hợp đồng" đè lên khung giấy.
