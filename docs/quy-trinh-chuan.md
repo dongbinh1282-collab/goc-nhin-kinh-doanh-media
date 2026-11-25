@@ -74,3 +74,4 @@ Bài học tập 11 (48 phút): 4 vòng tạo lại giọng vì từ đọc sai 
 - Tạo giọng + qa.py NGAY KHI VIẾT KỊCH BẢN, trước khi gửi anh duyệt. Kịch bản gửi anh = bản đã đọc đúng 100%. Anh sửa câu nào chỉ tạo lại câu đó (có cache).
 - Viết scenes.py cũng trước khi gửi duyệt; chạy check_de.py + `cap.py pv` 3–4 khung xem trước. Nhãn ≥ 42 px, cảnh PHẦN SAU để chữ trong pre().
 - Sau khi anh duyệt chỉ còn: make.sh (2') → qa.py + xem qa_sheet (2') → đẩy kho + lên lịch (1').
+- CHỐT (anh Bình 25/11/2026): gửi kịch bản cho anh NGAY sau check_trung + check_tu, đồng thời chạy NỀN giọng đọc + qa.py + scenes/check_de. Anh duyệt xong chỉ còn make.sh → qa → giao (~5–7 phút). Câu anh sửa thì tạo lại riêng câu đó.
