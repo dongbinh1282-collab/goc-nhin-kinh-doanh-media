@@ -1,0 +1,60 @@
+[
+ [
+  [
+   "Doanh thu năm nay tăng, nhưng lợi nhuận gộp trên mỗi đồng doanh thu lại giảm, và doanh nghiệp không biết sản phẩm nào gây ra.",
+   "n"
+  ]
+ ],
+ [
+  [
+   "Vấn đề nằm ở con số trung bình. Doanh nghiệp chỉ nhìn biên lợi nhuận gộp của cả công ty, trong khi mỗi sản phẩm có một mức biên khác nhau.",
+   "n"
+  ]
+ ],
+ [
+  [
+   "Biên lợi nhuận gộp được tính bằng cách lấy doanh thu trừ đi giá vốn, rồi chia cho doanh thu.",
+   "n"
+  ]
+ ],
+ [
+  [
+   "Việc đầu tiên là tính biên lợi nhuận gộp cho từng sản phẩm, không tính cho cả công ty.",
+   "f"
+  ]
+ ],
+ [
+  [
+   "Giả sử sản phẩm thứ nhất có biên lợi nhuận gộp ba mươi tám phần trăm, sản phẩm thứ hai chỉ có mười hai phần trăm. Khi sản phẩm thứ hai bán chạy hơn, doanh thu tăng, còn biên lợi nhuận gộp của cả công ty lại giảm.",
+   "n"
+  ]
+ ],
+ [
+  [
+   "Việc tiếp theo là tính đủ giá vốn từng sản phẩm, gồm giá nhập, vận chuyển về kho và hao hụt, đồng thời trừ chiết khấu cho khách khỏi doanh thu.",
+   "f"
+  ]
+ ],
+ [
+  [
+   "Việc cuối cùng là xếp hạng sản phẩm theo tổng số tiền lợi nhuận mang về, đặt cạnh tỷ lệ phần trăm.",
+   "f"
+  ]
+ ],
+ [
+  [
+   "Sản phẩm biên thấp nhưng bán nhiều, tổng lợi nhuận gộp bằng tiền lớn, vẫn cần giữ. Sản phẩm biên thấp và bán ít cần tăng giá, đổi cấu hình hoặc dừng bán.",
+   "k"
+  ]
+ ],
+ [
+  [
+   "Phần sau sẽ là cách định giá lại sản phẩm có biên lợi nhuận gộp thấp mà không mất khách hàng.",
+   "p"
+  ],
+  [
+   "Hẹn gặp lại các bạn.",
+   "p"
+  ]
+ ]
+]
