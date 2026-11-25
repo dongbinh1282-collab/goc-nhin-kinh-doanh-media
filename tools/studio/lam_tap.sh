@@ -9,7 +9,7 @@ case $B in
   (cd $T && python3 scenes.py >/dev/null && python3 ../studio/check_de.py | tail -3; python3 ../studio/tts_vn.py >/dev/null 2>&1; python3 ../studio/qa.py 2>&1 | grep -E "^SAI|lệch|Độ dài") > /tmp/$T.log 2>&1 &
   echo "Đang chạy nền, xem: cat /tmp/$T.log";;
  dung) # sau khi anh duyệt: dựng + kiểm tra cuối
-  cd $T && python3 ../studio/check_de.py | tail -1 && bash ../studio/make.sh >/dev/null 2>&1; python3 ../studio/qa.py 2>&1 | grep -E "^SAI|Độ dài|KẾT"; echo "Xem 1 lần: tools/$T/qa_sheet.jpg";;
+  cd $T && python3 ../studio/punct.py && python3 ../studio/check_de.py | tail -1 && bash ../studio/make.sh >/dev/null 2>&1; python3 ../studio/qa.py 2>&1 | grep -E "^SAI|Độ dài|KẾT"; J=$(ffmpeg -loglevel error -i final.mp4 -vf "crop=1080:720:0:500,scale=270:-1,select=gt(scene\,0.08),metadata=print:file=/tmp/nh.txt" -an -f null - ; grep -c pts_time /tmp/nh.txt); echo "Nhảy hình: $J chỗ (phải 0)"; echo "Xem 1 lần: tools/$T/qa_sheet.jpg";;
  day) # đẩy video lên kho công khai, in link
   N=$(echo $T | sed 's/tap0*//'); cd .. && cp tools/$T/final.mp4 video/Tap$N.mp4 && git add --sparse video/Tap$N.mp4 && git add tools/$T/{script2.json,scenes.py,scenes.json,dur.json,words.json,page.html} && git -c user.name=Claude -c user.email=noreply@anthropic.com commit -qm "Tập $N (bản duyệt)" && git push -q origin HEAD 2>&1 | tail -1
   H=$(git rev-parse HEAD); sleep 4; U=https://raw.githubusercontent.com/dongbinh1282-collab/goc-nhin-kinh-doanh-media/$H/video/Tap$N.mp4; echo "$U $(curl -sL -o /dev/null -w '%{http_code}' $U)";;

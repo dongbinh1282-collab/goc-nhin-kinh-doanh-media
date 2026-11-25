@@ -5,6 +5,8 @@ S=$(dirname "$(readlink -f "$0")")
 N=$(python3 -c "import json;print(round(sum(json.load(open('dur.json')))*30))")
 T=$(python3 -c "import json;print(sum(json.load(open('dur.json'))))")
 
+# Xóa khung cũ của lần dựng trước (khung cũ lệch số sẽ chèn vào video gây nhảy hình)
+find fr0 fr1 fr2 fr3 all -maxdepth 1 \( -name "*.jpg" -o -type l \) -delete 2>/dev/null
 # 1) Chụp khung hình song song 4 phần
 q=$((N/4)); python3 $S/cap.py 0 $q 0 & python3 $S/cap.py $q $((2*q)) 1 & python3 $S/cap.py $((2*q)) $((3*q)) 2 & python3 $S/cap.py $((3*q)) $N 3 & wait
 mkdir -p all && for d in fr0 fr1 fr2 fr3; do for f in $d/*.jpg; do ln -sf ../$f all/$(basename $f); done; done

@@ -7,6 +7,7 @@ RUI_RO = {  # từ hay sai : cách thay đã đọc đúng
  'vay': 'xoay tiền / cho vay (cụm "ngân hàng cho vay" đọc đúng)',
  'hạn mức': 'chỉ dùng trong cụm "hạn mức ngắn hạn"',
  'tín dụng': 'chỉ dùng cuối câu ("siết tín dụng ngay")',
+ 'nhưng biên lợi nhuận': 'nhưng lợi nhuận gộp trên mỗi đồng doanh thu (tập 13 đọc sai)',
  'lãi': 'chi phí / tiền lãi',
  'cạn': 'hết',
  'suất': 'mức', 'nên': 'hãy', 'lăm': 'nửa tháng / một tháng rưỡi',

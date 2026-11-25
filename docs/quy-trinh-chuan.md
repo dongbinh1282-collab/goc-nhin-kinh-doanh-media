@@ -83,3 +83,22 @@ Bài học tập 11 (48 phút): 4 vòng tạo lại giọng vì từ đọc sai 
 4. Trả lời anh ngắn: kết quả + thời gian + việc cần duyệt.
 5. Mở cửa sổ mới sau khoảng 3 tập.
 Lịch đã lên (19:30): Tập 10 → 05/12/2026 · Tập 11 → 06/12 · Tập 12 → 07/12. Tập 13 → 08/12 (tiếp theo +1 ngày). Chủ đề tập 13: cách đọc biên lợi nhuận gộp từng sản phẩm.
+
+## 15. Rà chuyên môn TRƯỚC khi gửi kịch bản (anh Bình 25/11/2026 – không để anh phải bảo "kiểm tra lại")
+Trước khi gửi, tự rà từng câu theo bảng này, sửa xong mới gửi:
+1. Thuật ngữ kế toán đúng chỗ: chiết khấu cho khách trừ vào DOANH THU; vận chuyển giao khách, bảo hành, hoa hồng là CHI PHÍ BÁN HÀNG, không nằm trong giá vốn; giá vốn = giá nhập + vận chuyển về kho + hao hụt.
+2. Phân biệt % và tiền: biên (%) có thể giảm trong khi lợi nhuận (tiền) vẫn tăng – câu nêu nỗi đau phải nói đúng đại lượng.
+3. Mỗi lời khuyên có lý do/điều kiện kèm theo (vd giữ sản phẩm biên thấp VÌ tổng lợi nhuận gộp bằng tiền lớn).
+4. Không có "lãi" kể cả "tiền lãi gộp"; không viết "nhưng biên lợi nhuận" (máy đọc sai).
+5. Đọc lại cả bài một lượt như người xem: câu nào hiểu được hai nghĩa thì viết lại.
+
+## 16. Hình vẽ phong phú (anh Bình 25/11/2026)
+- Mỗi câu đọc một cảnh riêng (tách nhóm trong script2.json), không gộp 2–3 câu vào một cảnh.
+- Cảnh mở đầu KHÔNG dùng lại hình người ôm đầu; mỗi tập mở bằng hình minh họa đúng nỗi đau (biểu đồ, đồ vật, con số).
+- Mỗi cảnh có hình vẽ minh họa riêng (biểu đồ, xe, kính lúp, đồng hồ đo, bục xếp hạng, nhãn giá…), phần lớn nét vẽ dần, không chỉ chữ trong ô.
+- Không lặp bộ hình của tập trước.
+- Khung ĐẦU TIÊN phải hiện đủ thông tin nổi bật ngay (dùng pre() cho biểu đồ + chữ chính của cảnh mở đầu), không để khung đầu chỉ có trục/nét trống – anh Bình 25/11/2026.
+- Chữ chạy phải ngắt đúng cụm nghĩa, không tách đôi từ ghép (lợi | nhuận, sản | phẩm): dùng page.html của tap13 trở đi (có GLUE) + studio/punct.py (lam_tap.sh dung tự chạy). Gặp từ ghép bị tách thì thêm vào GLUE.
+- Kiểm chữ chạy trước khi dựng: (cd tapNN && python3 ../studio/punct.py && node ../studio/check_phude.js) – mỗi dòng 4–10 từ, không tách từ ghép, không vắt qua 2 câu.
+- Nhảy hình: make.sh xóa khung cũ trước khi chụp; lam_tap.sh dung in 'Nhảy hình: N chỗ' – phải bằng 0 mới giao (anh Bình 25/11/2026).
+- Khung đầu giống Tập 1–2 (ảnh lưới TikTok anh gửi 25/11): tiêu đề nỗi đau chữ to + ô chữ phụ hiện ngay bằng pre(); bút bắt đầu vẽ hình minh họa ngay từ giây đầu và vẽ gần hết cảnh, không để hình đứng yên.
