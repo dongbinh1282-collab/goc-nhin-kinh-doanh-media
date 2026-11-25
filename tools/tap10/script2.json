@@ -1,10 +1,58 @@
 [
- [["Nhiều doanh nghiệp chỉ tìm đến ngân hàng khi tài khoản sắp hết tiền.","n"],["Lúc đó, khoản vay có kịp về không?","q"]],
- [["Ngân hàng thường cần từ hai đến bốn tuần để thẩm định hồ sơ của một doanh nghiệp.","n"],["Vì vậy, người cần tiền gấp thường nhận tiền chậm, hoặc phải chịu chi phí vốn cao.","n"]],
- [["Điều thứ nhất là xin cấp hạn mức vay từ khi doanh nghiệp còn khỏe.","f"],["Hạn mức là số tiền ngân hàng duyệt sẵn, cần đến đâu thì rút đến đó.","n"]],
- [["Điều thứ hai là cho dòng tiền đi qua tài khoản tại ngân hàng đó.","f"],["Lịch sử giao dịch đều đặn là bằng chứng tốt nhất về khả năng trả nợ.","n"]],
- [["Điều thứ ba là chuẩn bị bộ hồ sơ tài chính minh bạch.","f"],["Báo cáo tài chính, sổ sách và bảng dự báo dòng tiền phải khớp với nhau.","n"]],
- [["Điều thứ tư là xin đúng số tiền doanh nghiệp thật sự cần.","f"],["Ví dụ, tuần khó nhất thiếu ba trăm triệu, doanh nghiệp nên xin hạn mức khoảng bốn trăm triệu để có phần dự phòng.","n"]],
- [["Ngân hàng cho vay dễ nhất vào lúc doanh nghiệp chưa cần tiền.","k"]],
- [["Phần sau sẽ là cách thương lượng với nhà cung cấp để kéo dài thời hạn trả tiền.","p"],["Hẹn gặp lại các bạn.","p"]]
+ [
+  [
+   "Ngày trả lương, doanh nghiệp đi xin ngân hàng, nhưng hồ sơ bị từ chối vì ngân hàng không thấy đường trả nợ.",
+   "n"
+  ]
+ ],
+ [
+  [
+   "Nguồn trả nợ chính của ngân hàng là dòng tiền từ kinh doanh. Nguồn trả nợ phụ là tài sản bảo đảm.",
+   "n"
+  ],
+  [
+   "Ngân hàng xem sao kê mười hai tháng để biết tiền vào đều hay đứt quãng, và xem báo cáo tài chính hai năm gần nhất.",
+   "n"
+  ]
+ ],
+ [
+  [
+   "Họ cũng tra lịch sử nợ trên hệ thống dữ liệu nợ của Ngân hàng Nhà nước. Một khoản quá hạn, dù nhỏ, vẫn được ghi lại.",
+   "n"
+  ],
+  [
+   "Vì vậy, nên mở tài khoản giao dịch chính tại ngân hàng từ sớm, và để tiền bán hàng đi qua tài khoản đó.",
+   "n"
+  ]
+ ],
+ [
+  [
+   "Sản phẩm phù hợp cho nhu cầu ngắn hạn là hạn mức ngắn hạn, rút theo từng giấy nhận nợ và trả khi khách thanh toán.",
+   "n"
+  ],
+  [
+   "Không dùng hạn mức ngắn hạn để mua máy hay xây xưởng, vì thời gian trả nợ không khớp với thời gian thu hồi vốn.",
+   "n"
+  ]
+ ],
+ [
+  [
+   "Hãy nộp hồ sơ khi doanh thu quý gần nhất đang tăng, và nếu có báo cáo kiểm toán thì chuẩn bị sẵn, để doanh nghiệp còn thế đàm phán.",
+   "n"
+  ],
+  [
+   "Khi rút, chỉ rút đúng số cần cho đúng mục đích, rồi trả ngay khi khách thanh toán, để tiền lãi chỉ tính trên số thực sự đã dùng.",
+   "k"
+  ]
+ ],
+ [
+  [
+   "Phần sau sẽ là cách thương lượng với nhà cung cấp để kéo dài thời hạn trả tiền.",
+   "p"
+  ],
+  [
+   "Hẹn gặp lại các bạn.",
+   "p"
+  ]
+ ]
 ]

@@ -98,59 +98,43 @@ def bank(x,y,s=1.0,fill='#e6f0fb'):
     e+=[P(R(x+30*s+i*66*s,y+82*s,34*s,130*s,4),'#ffffff',4) for i in range(4)]
     e+=[P(R(x-10*s,y+212*s,w+20*s,30*s,4),fill,5)]
     return e
-# 0 hook
-s=[T(540,80,'TÀI KHOẢN SẮP HẾT TIỀN',54,RD)]
+# 0 hook: ngày trả lương, hồ sơ bị từ chối
+s=[T(540,80,'NGÀY TRẢ LƯƠNG',62,RD)]
 s+=pre(bank(600,170,1.15))
 s+=person(270,250,1.4,'stress','head',BL,tie=True,legs=False)
-s+=[T(470,300,'?',100,RD)]
-s+=[T(540,560,'Khoản vay có kịp về?',52,DB)]
+s+=[T(540,560,'Hồ sơ bị từ chối',52,RD)]
 S.append(s)
-# 1 thẩm định 2-4 tuần
-s=[T(540,80,'THẨM ĐỊNH: 2–4 TUẦN',58,RD)]
-s+=pre([P(R(90+i*235,170,190,190,16),'#ffffff',5) for i in range(4)])
-s+=[x for i in range(4) for x in [P(R(90+i*235,170,190,56,16),RD,5),T(185+i*235,212,'TUẦN',34,'#ffffff'),T(185+i*235,320,str(i+1),80,INK)]]
-s+=arrow(110,420,970,420,RD,9)
-s+=[T(540,510,'Cần gấp: nhận tiền chậm',48,INK),T(540,585,'hoặc chi phí vốn cao',48,RD)]
+# 1 nguồn trả nợ + sao kê 12 tháng
+s=[T(540,80,'NGUỒN TRẢ NỢ',60,RD)]
+s+=pre([P(R(40,170,460,260,20),'#e6f0fb',6,DB),P(R(580,170,460,260,20),'#fff3d6',6,OR)])
+s+=[T(270,230,'Dòng tiền',50,DB),T(270,300,'kinh doanh',50,INK),T(270,370,'nguồn chính',40,DB)]
+s+=[T(810,230,'Tài sản',50,OR),T(810,300,'bảo đảm',50,INK),T(810,370,'nguồn phụ',40,OR)]
+s+=[T(540,468,'Sao kê 12 tháng',50,DB)]
+s+=[P(R(90+i*70,498,50,56,6),GR,4) for i in range(12)]
 S.append(s)
-# 2 hạn mức
-s=[T(540,80,'HẠN MỨC VAY',60,RD)]
-s+=person(230,250,1.4,'happy','point',BL,tie=True,legs=False)
-s+=pre([P(R(520,150,240,420,24),'#ffffff',6,DB)])
-s+=[P(R(532,380,216,178,16),'#bfe3ff',4,DB),T(640,480,'Rút',50,DB)]
-s+=[P(L((520,370),(760,370)),None,5,RD),T(640,215,'Duyệt',46,GN),T(640,270,'sẵn',46,GN)]
-s+=arrow(780,470,900,470,GN,9)+coin(960,470,58)
-s+=[T(890,600,'cần đến đâu',40,INK)]
+# 2 lịch sử nợ trên CIC
+s=[T(540,80,'LỊCH SỬ NỢ',60,RD)]
+s+=pre(tag(120,170,360,'Sao kê đều',GR,40)+tag(600,170,360,'Không quá hạn',YL,40))
+s+=[P(R(340,300,400,200,16),'#ffffff',5),T(540,370,'Dữ liệu nợ',44,DB),T(540,430,'Ngân hàng Nhà nước',34,DB),T(540,490,'CIC',60,RD)]
+s+=tag(340,540,400,'Quá hạn vẫn bị ghi',RD,36)
 S.append(s)
-# 3 dòng tiền qua ngân hàng
-s=[T(540,80,'DÒNG TIỀN QUA NGÂN HÀNG',54,RD)]
-s+=pre(bank(640,160,1.15))
-s+=coin(150,230,60)+coin(150,380,60)+arrow(230,230,600,280,GN,8)+arrow(230,380,600,330,GN,8)
-s+=pre([P(L((110,575),(560,575)),None,5,INK)])
-s+=[P(R(130+i*85,505,55,70,6),GR,4) for i in range(5)]
-s+=[T(800,500,'Giao dịch',46,GN),T(800,570,'đều đặn',46,GN)]
+# 3 tài khoản chính + hạn mức ngắn hạn + giấy nhận nợ
+s=[T(540,80,'HẠN MỨC NGẮN HẠN',56,RD)]
+s+=pre(bank(560,190,1.0))
+s+=coin(160,260,50)+arrow(220,260,540,300,GN,8)
+s+=[T(160,380,'Tiền bán hàng',40,GN)]
+s+=pre([P(R(90,440,300,130,16),'#ffffff',5,DB),T(240,485,'Giấy nhận nợ',40,DB),T(240,540,'rút, rồi trả',38,INK)])
 S.append(s)
-# 4 hồ sơ minh bạch
-s=[T(540,80,'HỒ SƠ MINH BẠCH',60,RD)]
-for i,lab in enumerate(['Báo cáo','Sổ sách','Dự báo']):
-    x=70+i*330
-    s+=pre([P(R(x,160,280,300,14),'#ffffff',5)])+[P(L((x+40,240+k*55),(x+240,240+k*55)),None,6,GY) for k in range(3)]
-    s+=[T(x+140,510,lab,46,DB),check(x+110,400,1.0)]
-s+=[T(540,600,'Ba tài liệu khớp nhau',46,GN)]
+# 4 đúng mục đích, rút đúng số, lãi chỉ trên phần đã dùng
+s=[T(540,80,'ĐÚNG MỤC ĐÍCH',60,RD)]
+s+=pre(box(120,200,2.2))
+s+=X(220,277,50,10)
+s+=[T(220,420,'Máy, xưởng',44,RD)]
+s+=pre([P(R(560,200,400,150,14),'#e4f5e8',6,GN)])+[T(760,270,'Rút đúng số cần',44,GN),T(760,320,'Trả khi khách trả',40,INK)]
+s+=[P(R(600,400,320,50,8),'#ffffff',4),P(R(600,400,140,50,8),GR,4),T(760,490,'Lãi chỉ trên phần đã dùng',40,GN)]
 S.append(s)
-# 5 theo nhu cầu thật
-s=[T(540,80,'XIN ĐÚNG SỐ CẦN',56,RD)]
-s+=pre([P(L((120,540),(980,540)),None,7,INK)])
-s+=[P(R(220,300,200,240,10),RD,5),T(320,280,'300 tr',50,RD),T(320,600,'Thiếu',44,INK)]
-s+=[P(R(640,300,200,240,10),BL,5),P(R(640,220,200,80,10),GR,5),T(740,200,'400 tr',50,DB),T(740,276,'+100',42,'#ffffff'),T(740,600,'Hạn mức',44,INK)]
-s+=arrow(440,420,620,420,INK,8)+[T(530,390,'dự phòng',40,GN)]
-S.append(s)
-# 6 kết
-s=[T(540,100,'VAY DỄ NHẤT',64,RD),T(540,180,'khi chưa cần tiền',54,DB)]
-s+=person(250,320,1.3,'happy','point',BL,tie=True,legs=False)
-s+=bank(560,300,1.0)+[check(880,330,1.2)]
-S.append(s)
-# 7 teaser
-s=pre([P(R(140,90,800,330,28),'#fff3d6',6)])+[T(540,180,'PHẦN SAU',60,RD),T(540,280,'Nhà cung cấp',58,INK),T(540,360,'trả tiền chậm hơn',52,DB)]
+# 5 teaser
+s=pre([P(R(140,90,800,330,28),'#fff3d6',6)])+[T(540,180,'PHẦN SAU',60,RD),T(540,280,'Nhà cung cấp',58,INK),T(540,360,'kéo dài thời hạn trả tiền',50,DB)]
 s+=stack(400,520,3,2,0.9)
 S.append(s)
 json.dump(S,open('scenes.json','w'),ensure_ascii=False); print([len(x) for x in S])
