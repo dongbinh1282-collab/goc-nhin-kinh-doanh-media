@@ -42,7 +42,7 @@ Kênh cá nhân của anh Bình. Không ghi tên anh trong video. Mỗi tập ch
 - Chỉ lên lịch sau khi anh Bình duyệt.
 
 ## 9. Quy tắc viết kịch bản (anh Bình yêu cầu, 24/11/2026)
-- Trước khi viết, đọc lại toàn bộ `tools/tap01`–`tap08` (script2.json) để biết những gì đã dạy. Không lặp câu mở, tiêu đề, công thức hay ví dụ đã có.
+- Không đọc lại kịch bản cũ. Sau khi viết `script2.json`, chạy `python3 studio/check_lap.py tapNN` (trong `tools/`) để kiểm tra cụm từ trùng với mọi tập cũ. Kết quả phải là "AN TOÀN (0 trùng)"; nếu có trùng thì sửa câu đó. Câu mở, tiêu đề, công thức và ví dụ không được lặp nguyên văn.
 - Chủ đề tập mới phải là lời hẹn "Phần sau sẽ là…" của tập trước. Không tự đổi chủ đề.
 - Viết với vai hội đồng chuyên gia: chuyên gia tài chính kiểm tra số liệu và công thức, biên tập viên kiểm tra câu mở và độ trùng lặp, người giữ chuẩn kênh kiểm tra độ dài, văn phong và câu kết.
 - Mọi con số trong ví dụ phải ghi là ví dụ minh họa, không trình bày như số liệu thống kê.

@@ -4,7 +4,7 @@
 T=$1; B=$2; cd "$(dirname "$0")/.." || exit 1
 case $B in
  kiemtra) # sau khi viết script2.json: kiểm trùng + từ đọc sai
-  python3 studio/check_trung.py $T | grep -E "đã có|đã mở|KẾT"; python3 studio/check_tu.py $T | grep -E "RỦI RO|KẾT";;
+  python3 studio/check_trung.py $T | grep -E "đã có|đã mở|KẾT"; python3 studio/check_tu.py $T | grep -E "RỦI RO|KẾT"; python3 studio/check_lap.py $T | tail -1;;
  nen) # ngay khi gửi kịch bản cho anh: giọng + nghe lại + kiểm hình, chạy nền, log /tmp/$T.log
   (cd $T && python3 scenes.py >/dev/null && python3 ../studio/check_de.py | tail -3; python3 ../studio/tts_vn.py >/dev/null 2>&1; python3 ../studio/qa.py 2>&1 | grep -E "^SAI|lệch|Độ dài") > /tmp/$T.log 2>&1 &
   echo "Đang chạy nền, xem: cat /tmp/$T.log";;
