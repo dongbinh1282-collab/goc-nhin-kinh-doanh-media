@@ -51,7 +51,10 @@ for i,sc in enumerate(S):
         ww=[w for sg in WM.transcribe(au,language='vi',word_timestamps=True,initial_prompt=txt)[0] for w in sg.words]
         if len(ww)==len(words): tm=[[w.start,w.end] for w in ww]; print('align ok',k)
         else: print('align fallback',k,len(ww),len(words))
-        subprocess.run(['cp',f'v{k}.wav',cw]); json.dump([[float(a),float(b)] for a,b in tm],open(cj,'w'))
+        if best[2]:  # còn từ đọc sai sau 6 lần: KHÔNG lưu cache, để lần sau tạo lại
+            print('KHÔNG CACHE (còn sai):',k,best[2])
+        else:
+            subprocess.run(['cp',f'v{k}.wav',cw]); json.dump([[float(a),float(b)] for a,b in tm],open(cj,'w'))
         ws+=[[t+tm[n][0],t+tm[n][1],re.sub(r'[,.?:!]','',words[n]),j] for n in range(len(words))]
         parts.append((i,t,f'v{k}.wav'));k+=1
         t+=d+(GAP[st] if j<len(sc)-1 else 0.25)
