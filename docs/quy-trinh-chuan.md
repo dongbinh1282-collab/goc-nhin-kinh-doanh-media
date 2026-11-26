@@ -102,3 +102,22 @@ Trước khi gửi, tự rà từng câu theo bảng này, sửa xong mới gử
 - Kiểm chữ chạy trước khi dựng: (cd tapNN && python3 ../studio/punct.py && node ../studio/check_phude.js) – mỗi dòng 4–10 từ, không tách từ ghép, không vắt qua 2 câu.
 - Nhảy hình: make.sh xóa khung cũ trước khi chụp; lam_tap.sh dung in 'Nhảy hình: N chỗ' – phải bằng 0 mới giao (anh Bình 25/11/2026).
 - Khung đầu giống Tập 1–2 (ảnh lưới TikTok anh gửi 25/11): tiêu đề nỗi đau chữ to + ô chữ phụ hiện ngay bằng pre(); bút bắt đầu vẽ hình minh họa ngay từ giây đầu và vẽ gần hết cảnh, không để hình đứng yên.
+
+## 11. Quy tắc tối ưu (đánh giá từ lượt chạy thử 26/11/2026)
+
+Đo trên máy hiện tại (2 nhân). Một tập 60 giây, câu đã có cache: lồng giọng ~2 giây, dựng ~105 giây, kiểm tra ~90 giây, tổng ~3,5 phút. Câu mới phải tạo lại làm tăng thêm khoảng 15–20 giây cho mỗi câu.
+
+Đã hiệu quả, giữ lại:
+- Cache giọng đọc dùng chung (`tools/studio/tts_cache`). Câu lặp lại chỉ tốn vài giây thay vì ~100 giây.
+- Kiểm tra lặp ý bằng `check_lap.py` thay cho đọc lại kịch bản cũ. Tiết kiệm token, không đổi chất lượng.
+
+Không hiệu quả, không làm:
+- Giảm chất lượng ảnh chụp (JPEG 90 thay 96): thời gian gần như không đổi.
+- Chỉ chụp khung khi hình thay đổi: chữ chạy từng từ nên hầu hết khung đều thay đổi.
+
+Quy tắc khi làm tập mới:
+1. Mở phiên mới: chạy `tools/setup.sh` ở nền ngay (khoảng 90 giây).
+2. Viết kịch bản, rồi chạy `lam_tap.sh tapNN kiemtra`. Không đọc lại kịch bản cũ.
+3. Câu nào máy đọc nhận diện sai sau 6 lần thử thì viết lại câu, không lưu cache câu sai (đã được chặn tự động).
+4. Dựng bằng `make.sh`, kiểm tra bằng `qa.py`. Chỉ xem `qa_sheet.jpg` một lần. Nếu chỉ một vài câu lỗi, sửa câu đó; không cần dựng lại toàn bộ nếu không cần.
+5. Sau mỗi tập, ghi một dòng số liệu (thời gian từng bước, số câu phải tạo lại) để theo dõi.
