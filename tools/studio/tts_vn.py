@@ -4,7 +4,8 @@ from vn import load
 import soundfile as sf,numpy as np
 from faster_whisper import WhisperModel
 import hashlib
-os.makedirs('tts_cache',exist_ok=True)
+CD=os.path.join(os.path.dirname(os.path.abspath(__file__)),'tts_cache')  # cache dùng chung mọi tập
+os.makedirs(CD,exist_ok=True)
 _M={}
 def WMget():
     if 'w' not in _M: _M['w']=WhisperModel('small',compute_type='int8')
@@ -20,7 +21,7 @@ for i,sc in enumerate(S):
     for j,(txt,st) in enumerate(sc):
         NUM={'hai','ba','bốn','năm','tám','chín','mươi','mười','một','phần','trăm','thứ'}
         exp=[w for w in re.findall(r'\w+',txt.lower()) if w not in NUM]
-        h=hashlib.md5(txt.encode()).hexdigest()[:12]; cw=f'tts_cache/{h}.wav'; cj=f'tts_cache/{h}.json'
+        h=hashlib.md5(txt.encode()).hexdigest()[:12]; cw=os.path.join(CD,f'{h}.wav'); cj=os.path.join(CD,f'{h}.json')
         if os.path.exists(cw) and os.path.exists(cj):
             subprocess.run(['cp',cw,f'v{k}.wav']); d=dur(f'v{k}.wav'); words=txt.split(); tm=json.load(open(cj))
             print('line',k,'cache')
